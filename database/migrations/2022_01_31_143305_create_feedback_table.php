@@ -14,14 +14,15 @@ class CreateFeedbackTable extends Migration
     public function up()
     {
         Schema::create('feedback', function (Blueprint $table) {
-            $table->bigincrement();
+            $table->bigIncrements('id');
             $table->integer('User_ID');
             $table->integer('Course_ID');
 
             $table->string('message');
-            
+
             $table->string('status')->default(1);
-            
+            $table->rememberToken();
+
             $table->timestamps();
             $table->SoftDeletes();
         });
