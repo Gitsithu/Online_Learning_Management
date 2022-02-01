@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +47,24 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
 
-    Route::post('/v1/get_by_list/{table_name}', [ApiGeneralController::class, 'getTableDataByTableName'])->name('admin.v1.get_by_list');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('category', CategoryController::class);
+
+    // Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
+    // Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    // Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+    // Route::get('/category/edit/{parameter}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+    // Route::patch('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+    // Route::post('/category/destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+
+    // Route::put('/users/profile/update', [UserController::class, 'profileUpdate'])->name('users.profile.update');
+
+    // Route::resource('/roles', RoleController::class);
+    // Route::get('/roles/role_permission/{roleId}', [RoleController::class, 'rolePermission'])->name('roles.role_permission');
+    // Route::post('/roles/role_permission/{roleId}', [RoleController::class, 'rolePermissionAssign'])->name('roles.role_permission_assign');
+
 
 });

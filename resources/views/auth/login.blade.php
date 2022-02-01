@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Material Dashboard 2 by Creative Tim
+    Learning Mangement
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -68,32 +68,41 @@
               </div>
               <div class="card-body">
                 <form role="form" method="POST" action="{{ route('login') }}" class="text-start">
+                    @csrf
+
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                 <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong style="color:red;">{{ $message }}</strong>
+                </span>
+            @enderror
+
                   </div>
                   <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                   <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+              @error('password')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe">
-                    <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
+                    <label class="form-check-label mb-0 ms-2" for="rememberMe" value="{{ old('remember') ? 'checked' : '' }}">Remember me</label>
                   </div>
+                
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
                   </div>
+                    <p class="mt-4 text-sm text-center">
+                    Don't have an account?
+                    <a href="/register" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                  </p>
                 </form>
+                
               </div>
             </div>
           </div>

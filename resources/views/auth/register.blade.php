@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Material Dashboard 2 by Creative Tim
+    Learning Management
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -58,28 +58,47 @@
                   <form role="form" method="POST" action="{{ route('register') }}">
                   @csrf
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Name</label>
-                      <input type="text" name="name" class="form-control">
+                         <input id="name" type="text" placeholder="User Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color:red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Email</label>
-                      <input type="email" name="email" class="form-control">
+                      <input id="email" type="email" placeholder="User Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color:red;">{{ $message }}</strong>
+                            </span>
+                        @enderror                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                      <input id="password" type="password" placeholder="User Password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color:red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control">
+                      <input type="password" placeholder="Password Confirmation" name="password_confirmation" class="form-control">
                     </div>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Confirm Password</label>
-                      <input type="password" name="password" class="form-control">
-                    </div>
+                      <input id="phone" type="text" placeholder="User Phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color:red;">{{ $message }}</strong>
+                            </span>
+                        @enderror                    
+                        </div>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Phone</label>
-                      <input type="text" name="phone" class="form-control">
-                    </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Address</label>
-                      <input type="text" name="address" class="form-control">
+                    <input id="address" type="text" placeholder="User Address" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+                        @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color:red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-check form-check-info text-start ps-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
@@ -95,7 +114,7 @@
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-2 text-sm mx-auto">
                     Already have an account?
-                    <a href="../pages/sign-in.html" class="text-primary text-gradient font-weight-bold">Sign in</a>
+                    <a href="/login" class="text-primary text-gradient font-weight-bold">Sign in</a>
                   </p>
                 </div>
               </div>
