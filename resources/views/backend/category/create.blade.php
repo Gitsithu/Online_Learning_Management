@@ -69,7 +69,7 @@
                                  <div class="input-group input-group-outline mb-3">
 
                                     <select class="form-control" value="{{ old('status') }}" name="status" id="status">
-                                                   <option value="1" selected>Active</option>
+                                                   <option value="1" style="color:green;" selected>Active</option>
                                            </select>
 
                                 </div>

@@ -19,14 +19,15 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $objs = Categories::where('deleted_at', NULL)
+        $categories = Categories::where('deleted_at', NULL)
                        
         ->get();
-
+        $data = Categories::latest()->paginate(5);
         
         return view('backend.category.index')
-            ->with('objs', $objs);
-    
+            ->with('categories', $categories)
+            ->with('data', $data);
+
     }
 
     /**
@@ -80,8 +81,8 @@ class CategoryController extends Controller
                 //     'UserController@profile', ['id' => 1]
                     // );
     
-                return redirect()->action(
-                    'Backend\CategoryController@index'
+                return redirect()->route(
+                    'category.index'
                 );
             
             
@@ -92,9 +93,10 @@ class CategoryController extends Controller
             $smessage = 'Fail, Error in category creating ...!';
             $request->session()->flash('fail', $smessage);
 
-            return redirect()->action(
-                'Backend\CategoryController@index'
+            return redirect()->route(
+                'category.index'
             );
+      
         }
     }
 
@@ -118,8 +120,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $obj = DB::table('category')->where('id', $id)->first();
-        return view('backend.category.edit', ['obj' => $obj]);
+        $category = DB::table('categories')->where('id', $id)->first();
+        return view('backend.category.edit', ['category' => $category]);
     
     }
 
@@ -146,7 +148,7 @@ class CategoryController extends Controller
 
         try{
             
-            $new_obj = brand::find($id);
+            $new_obj = Categories::find($id);
             $new_obj->name = $name;
             $new_obj->status = $status;
             $new_obj->updated_at = $updated_at;
@@ -160,10 +162,9 @@ class CategoryController extends Controller
                 //     'UserController@profile', ['id' => 1]
                     // );
     
-                return redirect()->action(
-                    'Backend\CategoryController@index'
-                );
-            
+                    return redirect()->route(
+                        'category.index'
+                    );
             
     
         }
@@ -172,8 +173,8 @@ class CategoryController extends Controller
             $smessage = 'Fail, Error in brand updating ...!';
             $request->session()->flash('fail', $smessage);
 
-            return redirect()->action(
-                'Backend\CategoryController@index'
+            return redirect()->route(
+                'category.index'
             );
       
     }
@@ -188,6 +189,7 @@ class CategoryController extends Controller
     public function destroy(Request $request,$id)
     {
         //
+        dd('lee');
         $obj = Categories::find($id);
         
         // Very Dangerous - Fully Delete Action
@@ -212,8 +214,8 @@ class CategoryController extends Controller
             $message = 'Success, ' . $obj->name .' deleted successfully ...!';
             $request->session()->flash('fail', $message);
 
-            return redirect()->action(
-                'Backend\CategoryController@index'
+            return redirect()->route(
+                'category.index'
             );
         }
         else{
@@ -221,8 +223,8 @@ class CategoryController extends Controller
             $message = 'Fail, ' . $obj->name .' cannot delete ..... !';
             $request->session()->flash('fail', $message);
 
-            return redirect()->action(
-                'Backend\CategoryController@index'
+            return redirect()->route(
+                'category.index'
             );
         }
     }
