@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,13 +54,15 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('category', CategoryController::class);
+    Route::resource('blog', BlogController::class);
+    Route::resource('course', CourseController::class);
 
     // Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
     // Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
     // Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
     // Route::get('/category/edit/{parameter}', [CategoryController::class, 'edit'])->name('admin.category.edit');
     // Route::patch('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
-    // Route::post('/category/destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+    Route::post('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
 
     // Route::put('/users/profile/update', [UserController::class, 'profileUpdate'])->name('users.profile.update');
 
