@@ -44,14 +44,16 @@ Route::get('blog', function () {
 Route::get('backend/index', function () {
     return view('backend/index');
 });
-
+Route::get('/admin', function () {
+    return view('auth/login');
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
 
-
+    
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('category', CategoryController::class);
     Route::resource('blog', BlogController::class);
