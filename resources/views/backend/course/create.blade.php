@@ -61,9 +61,9 @@
 
                             <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                                <select value="{{ old('Categories_ID') }}" class="form-control" name="Categories_ID" >
+                                                <select class="form-control" name="Categories_ID" >
+                                                {{-- <option>Choose Course Category</option> --}}
                                                 @foreach($categories as $cat)
-                                                <option>Choose Course Category</option>
                                                 <option value="{{$cat->id}}">{{$cat->name}}</option>
                                                 @endforeach
                                                 </select>
@@ -74,7 +74,7 @@
 
                                 <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="text" value="{{ old('title') }}" name="title" class="form-control date" placeholder="Course Title">
+                                            <input type="text" value="{{ old('title') }}" name="title" class="form-control" placeholder="Course Title">
                                     </div>
                                 </div>
 
@@ -92,31 +92,31 @@
 
                             <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="file" value="{{ old('video') }}" name="video" accept=" video/*" class="form-control date" placeholder="Course Video">
+                                            <input type="file" value="{{ old('video') }}" name="video" accept=" video/*" class="form-control" >
                                     </div>
                                 </div>
 
                             <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="text" value="{{ old('author') }}" name="author" class="form-control date" placeholder="Course Author">
+                                            <input type="text" value="{{ old('author') }}" name="author" class="form-control" placeholder="Course Author">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="text" value="{{ old('fee') }}" name="fee" class="form-control date" placeholder="Course Fee">
+                                            <input type="text" value="{{ old('fee') }}" name="fee" class="form-control" placeholder="Course Fee">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="text" value="{{ old('duration') }}" name="duration" class="form-control date" placeholder="Course Duration">
+                                            <input type="text" value="{{ old('duration') }}" name="duration" class="form-control" placeholder="Course Duration">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="date" value="{{ old('published_date') }}" name="published_date" class="form-control date" placeholder="Course Published Date">
+                                            <input type="date" value="{{ old('published_date') }}" name="published_date" class="form-control" placeholder="Course Published Date">
                                     </div>
                                 </div>
 

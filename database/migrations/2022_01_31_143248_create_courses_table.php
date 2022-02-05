@@ -21,7 +21,7 @@ class CreateCoursesTable extends Migration
 
             $table->string('fee');
             $table->string('duration');
-            $table->DateTime('published_date');
+            $table->Date('published_date');
 
             $table->string('video')->nullable();
             $table->string('Image')->nullable();
