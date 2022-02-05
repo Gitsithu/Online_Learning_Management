@@ -19,7 +19,7 @@ class CourseController extends Controller
     {
         //
         $courses = DB::table('courses')->join('categories', 'courses.Categories_ID', '=', 'categories.id')->select('categories.name', 'courses.id', 'courses.Categories_ID',
-         'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')->get();
+         'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')->get();
         $data = Courses::latest()->paginate(5);
         
         return view('backend.course.index')
@@ -54,7 +54,12 @@ class CourseController extends Controller
         //
 
         $this->validate($request, [
+            'Category_ID' => 'required',
             'title' => 'required',
+            'author' => 'required',
+            'fee' => 'required',
+            'duration' => 'required',
+            'published_date' => 'required',
             'description' => 'required',
             'status' => 'required'
             
@@ -66,6 +71,13 @@ class CourseController extends Controller
         $fee = $request->input('fee');
         $duration = $request->input('duration');
         $published_date = $request->input('published_date');
+        // video
+        $video =$request->file('video');
+        $new_name = rand() . '.' . $video->getClientOriginalExtension();
+        $video->move(public_path('video'), $new_name);
+        $video_file = "/video/" . $new_name;
+        // 
+
         $description = $request->input('description');
         $remark = $request->input('remark');
         $status = $request->input('status');
@@ -96,6 +108,7 @@ class CourseController extends Controller
             $new_obj->fee = $fee;
             $new_obj->duration = $duration;
             $new_obj->published_date = $published_date;
+            $new_obj->video = $video_file;
             $new_obj->description = $description;
             $new_obj->remark = $remark;
             $new_obj->status = $status;
@@ -176,6 +189,12 @@ class CourseController extends Controller
         $fee = $request->input('fee');
         $duration = $request->input('duration');
         $published_date = $request->input('published_date');
+        // video
+        $video =$request->file('video');
+        $new_name = rand() . '.' . $video->getClientOriginalExtension();
+        $video->move(public_path('video'), $new_name);
+        $video_file = "/video/" . $new_name;
+        // 
         $description = $request->input('description');
         $remark = $request->input('remark');
         $status = $request->input('status');
@@ -191,6 +210,7 @@ class CourseController extends Controller
             $new_obj->duration = $duration;
             $new_obj->published_date = $published_date;
             $new_obj->description = $description;
+            $new_obj->video = $video_file;
             $new_obj->remark = $remark;
             $new_obj->status = $status;
             $new_obj->updated_at = $updated_at;

@@ -59,10 +59,11 @@
                            <div class="container">
                             <div class="row" style="padding-top:5%;">
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
                                                 <select value="{{ old('Categories_ID') }}" class="form-control" name="Categories_ID" >
                                                 @foreach($categories as $cat)
+                                                <option>Choose Course Category</option>
                                                 <option value="{{$cat->id}}">{{$cat->name}}</option>
                                                 @endforeach
                                                 </select>
@@ -71,14 +72,14 @@
                                 </div>
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ old('title') }}" name="title" class="form-control date" placeholder="Course Title">
                                     </div>
                                 </div>
 
                                
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                  <div class="input-group input-group-outline mb-3">
 
                                     <select class="form-control" value="{{ old('status') }}" name="status" id="status">
@@ -88,6 +89,12 @@
                                 </div>
 
                             </div>
+
+                            <div class="col-md-3">
+                                <div class="input-group input-group-outline mb-3">
+                                            <input type="file" value="{{ old('video') }}" name="video" accept=" video/*" class="form-control date" placeholder="Course Video">
+                                    </div>
+                                </div>
 
                             <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
@@ -128,6 +135,8 @@
                                 </div>
 
                             </div>
+
+                            
                             
                             </div>
                             </div>

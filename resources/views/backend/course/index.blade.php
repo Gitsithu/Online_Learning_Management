@@ -80,6 +80,11 @@
                                                 @endif
                                               
                     </span></span>
+                    <span class="mb-2 text-xs">Course Video <span class="text-dark ms-sm-2 font-weight-bold">
+                    <video width="200px" height="100px" controls="controls">   
+                    <source src="{{ $course->video}}"> 
+                </video> 
+                    </span></span>
                   </div>
                   <div class="ms-auto text-end">
                      <form action="{{ url('/admin/course', ['id' => $course->id]) }}" method="post">
