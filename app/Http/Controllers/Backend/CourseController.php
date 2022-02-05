@@ -54,7 +54,7 @@ class CourseController extends Controller
         //
 
         $this->validate($request, [
-            'Category_ID' => 'required',
+            'Categories_ID' => 'required',
             'title' => 'required',
             'author' => 'required',
             'fee' => 'required',
@@ -162,7 +162,8 @@ class CourseController extends Controller
     {
         //
         $course = DB::table('courses')->where('id', $id)->first();
-        return view('backend.course.edit', ['course' => $course]);
+        $categories = DB::table('categories')->get();
+        return view('backend.course.edit', ['course' => $course],['categories'=>$categories]);
     
     }
 
@@ -177,23 +178,20 @@ class CourseController extends Controller
     {
         //
         $this->validate($request, [
-            
+            'Categories_ID' => 'required',
             'title' => 'required',
             'description' => 'required',
             'status' => 'required',
             
         ]);
-
+        $categories = $request->input('Categories_ID');
         $title = $request->input('title');
         $author = $request->input('author');
         $fee = $request->input('fee');
         $duration = $request->input('duration');
         $published_date = $request->input('published_date');
         // video
-        $video =$request->file('video');
-        $new_name = rand() . '.' . $video->getClientOriginalExtension();
-        $video->move(public_path('video'), $new_name);
-        $video_file = "/video/" . $new_name;
+       
         // 
         $description = $request->input('description');
         $remark = $request->input('remark');
@@ -202,8 +200,15 @@ class CourseController extends Controller
         $updated_at = date("Y-m-d H:i:s");
 
         try{
+
+            $video =$request->file('video');   
+            if ($video != null){ 
+            $new_name = rand() . '.' . $video->getClientOriginalExtension();
+            $video->move(public_path('video'), $new_name);
+            $video_file = "/video/" . $new_name;
             
             $new_obj = Courses::find($id);
+            $new_obj->Categories_ID = $categories;
             $new_obj->title = $title;
             $new_obj->author = $author;
             $new_obj->fee = $fee;
@@ -215,6 +220,22 @@ class CourseController extends Controller
             $new_obj->status = $status;
             $new_obj->updated_at = $updated_at;
             $new_obj->save();
+            }
+            else {
+
+                $new_obj = Courses::find($id);
+                $new_obj->Categories_ID = $categories;
+                $new_obj->title = $title;
+                $new_obj->author = $author;
+                $new_obj->fee = $fee;
+                $new_obj->duration = $duration;
+                $new_obj->published_date = $published_date;
+                $new_obj->description = $description;
+                $new_obj->remark = $remark;
+                $new_obj->status = $status;
+                $new_obj->updated_at = $updated_at;
+                $new_obj->save();
+            }
         
                 $message = 'Success, course updated successfully ...!';
                 $request->session()->flash('success', $message);
