@@ -19,9 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Categories::where('deleted_at', NULL)
-                       
-        ->get();
+        $categories = Categories::where('deleted_at', NULL)->get();
         $data = Categories::latest()->paginate(5);
         
         return view('backend.category.index')
@@ -189,7 +187,6 @@ class CategoryController extends Controller
     public function destroy(Request $request,$id)
     {
         //
-        dd('lee');
         $obj = Categories::find($id);
         
         // Very Dangerous - Fully Delete Action

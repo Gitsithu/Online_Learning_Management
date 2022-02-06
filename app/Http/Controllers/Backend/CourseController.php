@@ -71,12 +71,20 @@ class CourseController extends Controller
         $fee = $request->input('fee');
         $duration = $request->input('duration');
         $published_date = $request->input('published_date');
+
         // video
         $video =$request->file('video');
         $new_name = rand() . '.' . $video->getClientOriginalExtension();
         $video->move(public_path('video'), $new_name);
         $video_file = "/video/" . $new_name;
         // 
+
+        // image
+        $image =$request->file('image');
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('course'), $new_name);
+        $image_file = "/course/" . $new_name;
+        //
 
         $description = $request->input('description');
         $remark = $request->input('remark');
@@ -109,6 +117,7 @@ class CourseController extends Controller
             $new_obj->duration = $duration;
             $new_obj->published_date = $published_date;
             $new_obj->video = $video_file;
+            $new_obj->Image = $image_file;
             $new_obj->description = $description;
             $new_obj->remark = $remark;
             $new_obj->status = $status;
@@ -201,11 +210,17 @@ class CourseController extends Controller
 
         try{
 
-            $video =$request->file('video');   
-            if ($video != null){ 
+            $video =$request->file('video');  
+            $image =$request->file('image'); 
+            if ($video != null & $image !=null){ 
             $new_name = rand() . '.' . $video->getClientOriginalExtension();
             $video->move(public_path('video'), $new_name);
             $video_file = "/video/" . $new_name;
+
+            
+            $new_name = rand() . '.' . $video->getClientOriginalExtension();
+            $image->move(public_path('course'), $new_name);
+            $image_file = "/course/" . $new_name;
             
             $new_obj = Courses::find($id);
             $new_obj->Categories_ID = $categories;
@@ -216,6 +231,7 @@ class CourseController extends Controller
             $new_obj->published_date = $published_date;
             $new_obj->description = $description;
             $new_obj->video = $video_file;
+            $new_obj->Image = $image_file;
             $new_obj->remark = $remark;
             $new_obj->status = $status;
             $new_obj->updated_at = $updated_at;

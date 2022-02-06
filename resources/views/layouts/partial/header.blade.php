@@ -93,7 +93,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Report</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/profile.html">
+          <a class="nav-link text-white " href="/admin/user/edit">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">payments</i>
             </div>
@@ -159,10 +159,11 @@
 
                       </div>
                       <div class="d-flex flex-column justify-content-center">
+                      <a href="/admin/user">
                         <h6 class="text-sm font-weight-normal mb-1">
                           <span class="font-weight-bold">{{ Auth::user()->email }}</span>
                         </h6>
-                      
+                      </a>
                       </div>
                     </div>
                   </a>
