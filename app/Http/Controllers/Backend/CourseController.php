@@ -19,7 +19,7 @@ class CourseController extends Controller
     {
         //
         $courses = DB::table('courses')->join('categories', 'courses.Categories_ID', '=', 'categories.id')->select('categories.name', 'courses.id', 'courses.Categories_ID',
-         'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')->get();
+         'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')->where('courses.deleted_at',NULL)->get();
         $data = Courses::latest()->paginate(5);
         
         return view('backend.course.index')
@@ -291,6 +291,34 @@ class CourseController extends Controller
                 'admin\CourseController@index'
             );
         }
+    }
+    public function delete(Request $request,$id)
+    {
+        $deleted_at = date("Y-m-d H:i:s");
+        try{
+
+        $new_obj = Courses::find($id);
+        $new_obj->deleted_at = $deleted_at;
+        $new_obj->save();
+        
+        $message = 'Success, ' . $new_obj->title .' deleted successfully ...!';
+        $request->session()->flash('fail', $message);
+
+        return redirect()->route(
+            'course.index'
+        );
+    }
+    catch(Exception $e){
+            
+        $message = 'Fail, ' . $new_obj->title .' cannot delete ..... !';
+        $request->session()->flash('fail', $smessage);
+
+        return redirect()->route(
+            'course.index'
+        );
+  
+}
+
     }
   
     }

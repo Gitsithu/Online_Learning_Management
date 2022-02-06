@@ -51,7 +51,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
+Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], function (){
 
     
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -64,7 +64,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     // Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
     // Route::get('/category/edit/{parameter}', [CategoryController::class, 'edit'])->name('admin.category.edit');
     // Route::patch('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
-    Route::post('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
+    Route::get('/course/{id}/delete', [CourseController::class, 'delete'])->name('admin.course.delete');
+    Route::get('/blog/{id}/delete', [BlogController::class, 'delete'])->name('admin.blog.delete');
+    Route::get('/category/{id}/delete', [CategoryController::class, 'delete'])->name('admin.category.delete');
 
     // Route::put('/users/profile/update', [UserController::class, 'profileUpdate'])->name('users.profile.update');
 

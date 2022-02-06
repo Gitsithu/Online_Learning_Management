@@ -229,5 +229,32 @@ class CategoryController extends Controller
         }
     }
   
+    public function delete(Request $request,$id)
+    {
+        $deleted_at = date("Y-m-d H:i:s");
+        try{
 
+        $new_obj = Categories::find($id);
+        $new_obj->deleted_at = $deleted_at;
+        $new_obj->save();
+        
+        $message = 'Success, ' . $new_obj->name .' deleted successfully ...!';
+        $request->session()->flash('fail', $message);
+
+        return redirect()->route(
+            'category.index'
+        );
+    }
+    catch(Exception $e){
+            
+        $message = 'Fail, ' . $new_obj->name .' cannot delete ..... !';
+        $request->session()->flash('fail', $smessage);
+
+        return redirect()->route(
+            'category.index'
+        );
+  
+}
+
+    }
 }

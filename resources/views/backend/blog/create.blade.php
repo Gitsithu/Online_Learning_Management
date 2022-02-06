@@ -59,26 +59,16 @@
                            <div class="container">
                             <div class="row" style="padding-top:5%;">
 
-                            <div class="col-md-4">
-                                <div class="input-group input-group-outline mb-3">
-                                                <select value="{{ old('user_id') }}" class="form-control" name="user_id" >
-                                                @foreach($users as $user)
-                                                <option value="{{$user->id}}">{{$user->name}}</option>
-                                                @endforeach
-                                                </select>
-                                            
-                                    </div>
-                                </div>
+                           
 
-
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ old('title') }}" name="title" class="form-control date" placeholder="Blog Title">
                                     </div>
                                 </div>
 
                                
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                  <div class="input-group input-group-outline mb-3">
 
                                     <select class="form-control" value="{{ old('status') }}" name="status" id="status">

@@ -97,7 +97,7 @@
 
                             <div class="col-md-12">
                                 <div class="input-group input-group-outline mb-3">
-                                    <textarea value="{{ isset($blog)? $blog->description:Request::old('description') }}" name="description" class="form-control date" placeholder="Blog Description" id="" cols="30" rows="5"></textarea>
+                                    <textarea  name="description" class="form-control date" placeholder="Blog Description" id="" cols="30" rows="5">{{ isset($blog)? $blog->description:Request::old('description') }}</textarea>
                         
                                     </div>
                                 </div>

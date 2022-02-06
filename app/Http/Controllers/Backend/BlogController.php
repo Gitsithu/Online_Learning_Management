@@ -19,7 +19,7 @@ class BlogController extends Controller
     public function index()
     {
         //
-        $blogs = DB::table('blogs')->join('users', 'blogs.User_ID', '=', 'users.id')->select('users.name', 'blogs.id', 'blogs.User_ID', 'blogs.title', 'blogs.description', 'blogs.status', 'blogs.created_at','blogs.updated_at')->get();
+        $blogs = DB::table('blogs')->join('users', 'blogs.User_ID', '=', 'users.id')->select('users.name', 'blogs.id', 'blogs.User_ID', 'blogs.title', 'blogs.description', 'blogs.status', 'blogs.created_at','blogs.updated_at')->where('blogs.deleted_at',NULL)->get();
         $data = Blog::latest()->paginate(5);
         
         return view('backend.blog.index')
@@ -57,9 +57,10 @@ class BlogController extends Controller
             'status' => 'required'
             
         ]);
+    
         try{
-            
-        $user = $request->input('user_id');
+        $loginUser = Auth::user();
+        $loginUserId = Auth::user()->id;        
         $name = $request->input('title');
         $description = $request->input('description');
         $status = $request->input('status');
@@ -69,7 +70,7 @@ class BlogController extends Controller
            
             $new_obj = new Blog();
         
-            $new_obj->user_id = $user;
+            $new_obj->User_ID = $loginUserId;
             $new_obj->title = $name;
             $new_obj->description = $description;
             $new_obj->status = $status;
@@ -217,4 +218,32 @@ class BlogController extends Controller
         }
     }
   
+    public function delete(Request $request,$id)
+    {
+        $deleted_at = date("Y-m-d H:i:s");
+        try{
+
+        $new_obj = Blog::find($id);
+        $new_obj->deleted_at = $deleted_at;
+        $new_obj->save();
+        
+        $message = 'Success, ' . $new_obj->title .' deleted successfully ...!';
+        $request->session()->flash('fail', $message);
+
+        return redirect()->route(
+            'blog.index'
+        );
+    }
+    catch(Exception $e){
+            
+        $message = 'Fail, ' . $new_obj->title .' cannot delete ..... !';
+        $request->session()->flash('fail', $smessage);
+
+        return redirect()->route(
+            'blog.index'
+        );
+  
+}
+
+    }
     }

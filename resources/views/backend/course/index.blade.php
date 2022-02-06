@@ -51,6 +51,12 @@
 </section>
     <!-- End Navbar -->
     <div class="container-fluid py-2">
+    <div class="row">
+    <div class="col-10 offset-10">
+    <a href="/admin/course/create"><button type="submit"  class="btn btn-fill btn-primary"> <i class="tim-icons icon-send"></i>Create</button></a>
+
+    </div>
+    </div>
       <div class="row">
          <div class="col-12">
           <div class="card my-2" >
@@ -87,11 +93,8 @@
                     </span></span>
                   </div>
                   <div class="ms-auto text-end">
-                     <form action="{{ url('/admin/course', ['id' => $course->id]) }}" method="post">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="return myFunction1();"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="_method" value="delete" />
-                  </form>
+                     <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="return myFunction1();" href='/admin/course/{{ $course->id }}/delete'><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                    
                     <a class="btn btn-link text-dark px-3 mb-0" onclick="return myFunction();" href='/admin/course/{{ $course->id }}/edit'><i class="material-icons text-sm me-2">edit</i>Edit</a>
                   </div>
                 </li>
