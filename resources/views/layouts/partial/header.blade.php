@@ -49,7 +49,7 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white {{ (request()->routeIs('/admin/dashboard*')) ? 'bg-gradient-primary' : '' }}" href="/admin/dashboard">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'admin.dashboard' ? 'bg-gradient-primary' : '' }}" href="/admin/dashboard">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -57,7 +57,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="/admin/category">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'category.index' || request()->route()->getName() === 'category.create' || request()->route()->getName() === 'category.edit'  ? 'bg-gradient-primary' : '' }} " href="/admin/category">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -65,7 +65,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="/admin/blog">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'blog.index' || request()->route()->getName() === 'blog.create' || request()->route()->getName() === 'blog.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/blog">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">receipt_long</i>
             </div>
@@ -73,7 +73,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="/admin/course">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'course.index' || request()->route()->getName() === 'course.create' || request()->route()->getName() === 'course.edit'  ? 'bg-gradient-primary' : '' }} " href="/admin/course">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">view_in_ar</i>
             </div>
@@ -81,7 +81,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/rtl.html">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'enroll.index' || request()->route()->getName() === 'enroll.create' || request()->route()->getName() === 'enroll.edit'  ? 'bg-gradient-primary' : '' }} " href="../pages/rtl.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">payment</i>
             </div>
@@ -93,7 +93,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Report</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/profile.html">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'en_report.index' || request()->route()->getName() === 'en_report.create' || request()->route()->getName() === 'en_report.edit'  ? 'bg-gradient-primary' : '' }}" href="../pages/profile.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">payments</i>
             </div>
@@ -101,7 +101,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/sign-in.html">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'usr_report.index' || request()->route()->getName() === 'usr_report.create' || request()->route()->getName() === 'usr_report.edit'  ? 'bg-gradient-primary' : '' }}" href="../pages/sign-in.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
