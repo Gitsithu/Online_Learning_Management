@@ -55,8 +55,7 @@
           <li><a href="/contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#"></a>1</li>
-              <li><a href="#"></a>2</li>
+              <li><a href="#"></a></li>
             </ul>
           </li>
         </ul>
