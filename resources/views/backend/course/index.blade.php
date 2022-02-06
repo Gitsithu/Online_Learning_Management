@@ -86,11 +86,11 @@
                                                 @endif
                                               
                     </span></span>
-                    <span class="mb-2 text-xs">Course Video <span class="text-dark ms-sm-2 font-weight-bold">
+                    <!-- <span class="mb-2 text-xs">Course Video <span class="text-dark ms-sm-2 font-weight-bold">
                     <video width="200px" height="100px" controls="controls">   
                     <source src="{{ $course->video}}"> 
                 </video> 
-                    </span></span>
+                    </span></span> -->
                   </div>
                   <div class="ms-auto text-end">
                      <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="return myFunction1();" href='/admin/course/{{ $course->id }}/delete'><i class="material-icons text-sm me-2">delete</i>Delete</a>

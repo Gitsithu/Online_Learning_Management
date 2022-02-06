@@ -54,7 +54,7 @@
       <div class="row">
          <div class="col-12">
           <div class="card my-2" >
-       <form action="/admin/course/{{ isset($course)? $course->id:0 }}" method="post"  enctype="multipart/form-data">
+       <form action="/admin/user/{{ isset($user)? $user->id:0 }}" method="post"  enctype="multipart/form-data">
                     <!-- <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> -->
                     {{csrf_field()}}
                     {{ method_field('PATCH') }}
@@ -62,37 +62,30 @@
                            <div class="container">
                             <div class="row" style="padding-top:5%;">
 
-                             <div class="col-md-4">
+
+                                <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                                <select class="form-control" name="Categories_ID" >
-                                                   @foreach($categories as $category)
-                                                                            @if($course->Categories_ID == $category->id)
-                                                                                <option value="{{$category->id}}" selected>{{$category->name}}</option>
-                                                                            @else
-                                                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                                                            @endif
-                                                                        @endforeach
-                                                </select>
-                                            
+                                            <input type="text" value="{{ isset($user)? $user->name:Request::old('name') }}" name="name" class="form-control" placeholder="User Name">
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="text" value="{{ isset($course)? $course->title:Request::old('title') }}" name="title" class="form-control" placeholder="Course Title">
+                                            <input type="text" value="{{ isset($user)? $user->email:Request::old('email') }}" name="email" class="form-control" placeholder="User Email">
                                     </div>
                                 </div>
-                                  <div class="col-md-4">
+                                
+                                  <div class="col-md-3">
                                  <div class="input-group input-group-outline mb-3">
 
                                     <select class="form-control" name="status" id="status">
  <?php
-                                        if(isset($course)){
+                                        if(isset($user)){
                                         ?>
             
                                             <option value="" selected disabled>Select Status</option>
-                                            <option value="1" <?php if ($course->status == 1){ echo 'selected'; } ?> style="color:green;" >Active</option>
-                                            <option value="0" <?php if ($course->status == 0){ echo 'selected'; } ?> style="color:red;" >In-Active</option>
+                                            <option value="1" <?php if ($user->status == 1){ echo 'selected'; } ?> style="color:green;" >Active</option>
+                                            <option value="0" <?php if ($user->status == 0){ echo 'selected'; } ?> style="color:red;" >In-Active</option>
             
                                         <?php
                                         }
@@ -108,64 +101,40 @@
                                 </div>
 
                             </div>
-                         
-                                 
-                               
-                                
-                               
+
+                            <div class="col-md-3">
+                                <div class="input-group input-group-outline mb-3">
+                                            <input type="text" value="{{ isset($user)? $user->phone:Request::old('phone') }}" name="phone" class="form-control" placeholder="User Phone">
+                                    </div>
+                                </div>
+
                                  </div>
                             <div class="row">
                             <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="text" value="{{ isset($course)? $course->author:Request::old('author') }}" name="author" class="form-control" placeholder="Course Author">
+                                            <input type="password" name="password" class="form-control" placeholder="User Password">
                                     </div>
                                 </div>
 
                             <div class="col-md-3">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="text" value="{{ isset($course)? $course->fee:Request::old('fee') }}" name="fee" class="form-control" placeholder="Course Fee">
+                                            <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
                                     </div>
                                 </div>
-
-                                <div class="col-md-3">
+                            
+                                <div class="col-md-6">
                                 <div class="input-group input-group-outline mb-3">
-                                            <input type="text" value="{{ isset($course)? $course->duration:Request::old('duration') }}" name="duration" class="form-control" placeholder="Coures Duration">
+                                            <input type="file" name="image" class="form-control" placeholder="user Image">{{ isset($user)? $user->image:Request::old('image') }}
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-
-                                <div class="input-group input-group-outline mb-3">
-                                            <input type="date" value="{{ isset($course)? $course->published_date:Request::old('published_date') }}" name="published_date" class="form-control" placeholder="Course Published Date">
-                                    </div>
-                                </div>
+                                
                         </div>
                               <div class="row">  
 
-                              <div class="col-md-6">
-
-                                <div class="input-group input-group-outline mb-3">
-                                            <input type="file" value="{{ isset($course)? $course->video:Request::old('video') }}" accept=" video/*" name="video" class="form-control" >
-                                    </div>
-                                </div> 
-
-                                <div class="col-md-6">
-
-                                <div class="input-group input-group-outline mb-3">
-                                            <input type="file" value="{{ isset($course)? $course->Image:Request::old('image') }}" name="image" class="form-control" >
-                                    </div>
-                                </div> 
-
                             <div class="col-md-12">
                                 <div class="input-group input-group-outline mb-3">
-                                    <textarea value="" name="description" class="form-control" placeholder="Course Description" id="" cols="30" rows="5" >{{ isset($course)? $course->description:Request::old('description') }}</textarea>
-                        
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                <div class="input-group input-group-outline mb-3">
-                                    <textarea value="" name="remark" class="form-control" placeholder="Course Remark" id="" cols="30" rows="5">{{ isset($course)? $course->remark:Request::old('remark') }}</textarea>
+                                    <textarea value="" name="address" class="form-control" id="" cols="30" rows="5" >{{ isset($user)? $user->address:Request::old('adress') }}</textarea>
                         
                                     </div>
                                 </div>

@@ -5,7 +5,11 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CourseController;
-
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\CoursesController;
+use App\Http\Controllers\Frontend\CategoriesController;
+use App\Http\Controllers\Frontend\BlogsController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +33,10 @@ Route::get('about', function () {
     return view('about');
 });
 
-Route::get('course', function () {
-    return view('course');
-});
+Route::get('/', [CoursesController::class, 'second'])->name('welcome');
+Route::resource('frontend/course', CoursesController::class);
+Route::resource('/layouts/header', CategoriesController::class);
+Route::resource('frontend/blog', BlogsController::class);
 
 Route::get('course_detail', function () {
     return view('course_detail');
@@ -58,6 +63,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
     Route::resource('category', CategoryController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('course', CourseController::class);
+    Route::resource('user', UserController::class);
 
     // Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
     // Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
