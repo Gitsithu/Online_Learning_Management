@@ -168,7 +168,7 @@ class CategoryController extends Controller
         }
         catch(Exception $e){
             
-            $smessage = 'Fail, Error in brand updating ...!';
+            $smessage = 'Fail, Error in bank info updating ...!';
             $request->session()->flash('fail', $smessage);
 
             return redirect()->route(

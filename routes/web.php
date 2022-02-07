@@ -6,6 +6,8 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\PaymentController;
+
 use App\Http\Controllers\Frontend\CoursesController;
 use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Frontend\BlogsController;
@@ -64,6 +66,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
     Route::resource('blog', BlogController::class);
     Route::resource('course', CourseController::class);
     Route::resource('user', UserController::class);
+    Route::resource('payment', PaymentController::class);
 
     // Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
     // Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
@@ -73,6 +76,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
     Route::get('/course/{id}/delete', [CourseController::class, 'delete'])->name('admin.course.delete');
     Route::get('/blog/{id}/delete', [BlogController::class, 'delete'])->name('admin.blog.delete');
     Route::get('/category/{id}/delete', [CategoryController::class, 'delete'])->name('admin.category.delete');
+    Route::get('/payment/{id}/delete', [PaymentController::class, 'delete'])->name('admin.payment.delete');
 
     // Route::put('/users/profile/update', [UserController::class, 'profileUpdate'])->name('users.profile.update');
 

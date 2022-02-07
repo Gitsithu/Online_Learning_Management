@@ -60,6 +60,7 @@
                             <div class="row" style="padding-top:5%;">
 
                             <div class="col-md-4">
+                            <label>Category</label>
                                 <div class="input-group input-group-outline mb-3">
                                                 <select class="form-control" name="Categories_ID" >
                                                 {{-- <option>Choose Course Category</option> --}}
@@ -73,6 +74,7 @@
 
 
                                 <div class="col-md-4">
+                                <label>Title</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ old('title') }}" name="title" class="form-control" placeholder="Course Title">
                                     </div>
@@ -80,6 +82,7 @@
 
                                
                                 <div class="col-md-4">
+                                <label>Status</label>
                                  <div class="input-group input-group-outline mb-3">
 
                                     <select class="form-control" value="{{ old('status') }}" name="status" id="status">
@@ -93,36 +96,42 @@
                             
 
                             <div class="col-md-3">
+                            <label>Author</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ old('author') }}" name="author" class="form-control" placeholder="Course Author">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
+                                <label>Course Fee</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ old('fee') }}" name="fee" class="form-control" placeholder="Course Fee">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
+                                <label>Course Duration</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ old('duration') }}" name="duration" class="form-control" placeholder="Course Duration">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
+                                <label>Published Date</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="date" value="{{ old('published_date') }}" name="published_date" class="form-control" placeholder="Course Published Date">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
+                                <label>Video</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="file" value="{{ old('video') }}" name="video" accept=" video/*" class="form-control" >
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
+                                <label>Image</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="file" value="{{ old('image') }}" placeholder="Insert Image" name="image" class="form-control" >
                                     </div>

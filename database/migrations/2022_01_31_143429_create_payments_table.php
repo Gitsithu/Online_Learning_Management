@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('user_name');
-            $table->integer('payment_number');
+            $table->string('payment_number');
 
             $table->string('status')->default(1);
             $table->rememberToken();

@@ -26,53 +26,55 @@
     </section><!-- End About Section -->
 
     <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="popular-courses" class="courses">
       <div class="container" data-aos="fade-up">
 
-        <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch">
-            <div class="content">
-              <h3>Why Choose Mentor?</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
-              </p>
-              <div class="text-center">
-                <a href="about.html" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+        <div class="section-title">
+          <h2>Courses</h2>
+          <p>Popular Courses</p>
+        </div>
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+    @foreach($courses as $course)
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item">
+              <img src="{{ $course->Image}}" class="img-fluid" alt="...">
+               <div class="course-content">
+              @if(Auth::check())
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <a href="/payment"><h4>Enroll</h4></a>
+                  <p class="price">{{ $course->fee }} - mmk</p>
+                </div>
+                @else
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                <a href="{{ route('login') }}"><h4>Enroll</h4></a>
+                  <p class="price">{{ $course->fee }} - mmk</p>
+                </div>
+                @endif
+
+                <h3><a href="#">{{ $course->title}}</a></h3>
+                <p>{{ $course->description}}</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <!-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt=""> -->
+                    <span>{{ $course->author}}</span>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bx bx-user"></i>&nbsp;50
+                    &nbsp;&nbsp;
+                    <i class="bx bx-heart"></i>&nbsp;65
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-8 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-boxes d-flex flex-column justify-content-center">
-              <div class="row">
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-receipt"></i>
-                    <h4>Corporis voluptates sit</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-                  </div>
-                </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-cube-alt"></i>
-                    <h4>Ullamco laboris ladore pan</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-                  </div>
-                </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-images"></i>
-                    <h4>Labore consequatur</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End .content-->
-          </div>
+          </div> <!-- End Course Item-->
+@endforeach
         </div>
 
       </div>
-    </section><!-- End Why Us Section -->
+    </section><!-- End Popular Courses Section -->
+
 
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
@@ -156,49 +158,7 @@
       </div>
     </section><!-- End Features Section -->
 
-    <!-- ======= Popular Courses Section ======= -->
-    <section id="popular-courses" class="courses">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Courses</h2>
-          <p>Popular Courses</p>
-        </div>
-
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
-    @foreach($courses as $course)
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="course-item">
-              <img src="{{ $course->Image}}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4>Detail</h4>
-                  <p class="price">{{ $course->fee }} - mmk</p>
-                </div>
-
-                <h3><a href="course-details.html">{{ $course->title}}</a></h3>
-                <p>{{ $course->description}}</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <!-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt=""> -->
-                    <span>{{ $course->author}}</span>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bx bx-user"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bx bx-heart"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-@endforeach
-        </div>
-
-      </div>
-    </section><!-- End Popular Courses Section -->
-
-    <!-- ======= Trainers Section ======= -->
+        <!-- ======= Trainers Section ======= -->
     <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">
 

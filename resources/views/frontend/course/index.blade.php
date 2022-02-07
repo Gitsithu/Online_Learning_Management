@@ -33,7 +33,7 @@
                 @endif
 
 
-                <h3><a href="course-details.html">{{ $course->title}}</a></h3>
+                <h3><a href="#">{{ $course->title}}</a></h3>
                 <p>{{ $course->description}}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">

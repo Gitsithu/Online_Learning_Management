@@ -88,7 +88,14 @@
             <span class="nav-link-text ms-1">Enrollment</span>
           </a>
         </li>
-      
+      <li class="nav-item">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'payment.index' || request()->route()->getName() === 'payment.create' || request()->route()->getName() === 'payment.edit'  ? 'bg-gradient-primary' : '' }} " href="/admin/payment">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">account_balance</i>
+            </div>
+            <span class="nav-link-text ms-1">Bank</span>
+          </a>
+        </li>
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Report</h6>
         </li>

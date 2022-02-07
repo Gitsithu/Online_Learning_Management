@@ -63,6 +63,7 @@
                             <div class="row" style="padding-top:5%;">
 
                              <div class="col-md-4">
+                             <label>Category</label>
                                 <div class="input-group input-group-outline mb-3">
                                                 <select class="form-control" name="Categories_ID" >
                                                    @foreach($categories as $category)
@@ -78,11 +79,13 @@
                                 </div>
 
                                 <div class="col-md-4">
+                                <label>Title</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ isset($course)? $course->title:Request::old('title') }}" name="title" class="form-control" placeholder="Course Title">
                                     </div>
                                 </div>
                                   <div class="col-md-4">
+                                  <label>Status</label>
                                  <div class="input-group input-group-outline mb-3">
 
                                     <select class="form-control" name="status" id="status">
@@ -116,25 +119,28 @@
                                  </div>
                             <div class="row">
                             <div class="col-md-3">
+                            <label>Author</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ isset($course)? $course->author:Request::old('author') }}" name="author" class="form-control" placeholder="Course Author">
                                     </div>
                                 </div>
 
                             <div class="col-md-3">
+                            <label>Course Fee</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ isset($course)? $course->fee:Request::old('fee') }}" name="fee" class="form-control" placeholder="Course Fee">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
+                                <label>Course Duration</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="text" value="{{ isset($course)? $course->duration:Request::old('duration') }}" name="duration" class="form-control" placeholder="Coures Duration">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
-
+                                <label>Published Date</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="date" value="{{ isset($course)? $course->published_date:Request::old('published_date') }}" name="published_date" class="form-control" placeholder="Course Published Date">
                                     </div>
@@ -143,14 +149,14 @@
                               <div class="row">  
 
                               <div class="col-md-6">
-
+                                <label>Video</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="file" value="{{ isset($course)? $course->video:Request::old('video') }}" accept=" video/*" name="video" class="form-control" >
                                     </div>
                                 </div> 
 
                                 <div class="col-md-6">
-
+                                <label>Image</label>
                                 <div class="input-group input-group-outline mb-3">
                                             <input type="file" value="{{ isset($course)? $course->Image:Request::old('image') }}" name="image" class="form-control" >
                                     </div>
