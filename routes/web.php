@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Frontend\CoursesController;
 use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Frontend\BlogsController;
+use App\Http\Controllers\Frontend\PaymentsController;
+use App\Http\Controllers\Frontend\EnrollController;
 use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -37,12 +39,15 @@ Route::get('about', function () {
 
 Route::get('/', [CoursesController::class, 'second'])->name('welcome');
 Route::resource('frontend/course', CoursesController::class);
+Route::resource('frontend/enroll/store', EnrollController::class);
+Route::get('payment/{id}/payment', [PaymentsController::class, 'payment'])->name('frontend.payment.index');
 Route::resource('/layouts/header', CategoriesController::class);
 Route::resource('frontend/blog', BlogsController::class);
 
 Route::get('course_detail', function () {
     return view('course_detail');
 });
+
 
 Route::get('blog', function () {
     return view('blog');

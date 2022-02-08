@@ -81,9 +81,9 @@ class CourseController extends Controller
 
         // image
         $image =$request->file('image');
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('course'), $new_name);
-        $image_file = "/course/" . $new_name;
+        $new_names = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('course'), $new_names);
+        $image_file = "/course/" . $new_names;
         //
 
         $description = $request->input('description');
@@ -212,15 +212,15 @@ class CourseController extends Controller
 
             $video =$request->file('video');  
             $image =$request->file('image'); 
-            if ($video != null & $image !=null){ 
+            if ($video != null && $image !=null){ 
             $new_name = rand() . '.' . $video->getClientOriginalExtension();
             $video->move(public_path('video'), $new_name);
             $video_file = "/video/" . $new_name;
 
             
-            $new_name = rand() . '.' . $video->getClientOriginalExtension();
-            $image->move(public_path('course'), $new_name);
-            $image_file = "/course/" . $new_name;
+            $new_names = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('course'), $new_names);
+            $image_file = "/course/" . $new_names;
             
             $new_obj = Courses::find($id);
             $new_obj->Categories_ID = $categories;

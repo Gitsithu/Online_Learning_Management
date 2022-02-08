@@ -22,7 +22,7 @@
               <div class="course-content">
               @if(Auth::check())
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <a href="#"><h4>Enroll</h4></a>
+                  <a href="/payment/{{$course->id}}/payment"><h4>Enroll</h4></a>
                   <p class="price">{{ $course->fee }} - mmk</p>
                 </div>
                 @else

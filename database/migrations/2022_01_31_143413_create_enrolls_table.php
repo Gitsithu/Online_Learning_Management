@@ -19,6 +19,9 @@ class CreateEnrollsTable extends Migration
             $table->integer('Course_ID');
             $table->integer('Payment_ID');
 
+            $table->string('amount');
+            $table->string('image')->nullable();
+
             $table->string('status')->default(1);
             $table->rememberToken();
 
