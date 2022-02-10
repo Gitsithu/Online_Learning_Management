@@ -50,7 +50,7 @@
 
 </section>
     <!-- End Navbar -->
-    <div class="container-fluid py-2">
+    <div class="container-fluid py-2" style="overflow-x: hidden;">
     <div class="row">
     <div class="col-10 offset-10">
     <a href="/admin/payment/create"><button type="submit"  class="btn btn-fill btn-primary"> <i class="tim-icons icon-send"></i>Create</button></a>
