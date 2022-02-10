@@ -12,24 +12,20 @@ class EnrollController extends Controller
 
     public function thein(Request $request)
     {
-        
         $this->validate($request, [
-            'price' => 'required',
-            'image' => 'required',
    
         ]);
         
-        try{
+        
            
         $loginUser = Auth::user();
         $user_id = $loginUser->id;
-        
+
         $payment_id = $request->input('payment_id');
-        
+
         $course_id = $request->input('course_id');
-        
+
         $amount = $request->input('amount');
-        dd($amount);
         // image
         $image =$request->file('image');
         $new_names = rand() . '.' . $image->getClientOriginalExtension();
@@ -46,7 +42,7 @@ class EnrollController extends Controller
             $new_obj->User_ID = $user_id;
             $new_obj->Course_ID = $course_id;
             $new_obj->Payment_ID = $payment_id;
-            $new_obj->user_name = $user_id;
+            $new_obj->User_ID = $user_id;
             $new_obj->amount = $amount;
             $new_obj->image = $image_file;
             $new_obj->created_at = $created_at;
@@ -66,9 +62,7 @@ class EnrollController extends Controller
             
             
     
-        }
-        catch(Exception $e){
-            
+                    
             $smessage = 'Fail, Error in Enroll info creating ...!';
             $request->session()->flash('fail', $smessage);
    
@@ -76,7 +70,7 @@ class EnrollController extends Controller
                 'enroll.index'
             );
       
-        }
+        
     }
 
     public function show()
