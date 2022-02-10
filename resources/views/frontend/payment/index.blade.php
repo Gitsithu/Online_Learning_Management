@@ -189,26 +189,26 @@ h5,
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="col-lg-5 p-0 ps-lg-4">
             <div class="row m-0">
-            <form action="/frotend/enroll/store" method="post"  enctype="multipart/form-data">
-                    <!-- <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> -->
-                    <input type="hidden" name="payment_id" value="{{$payments}}">
-                    <input type="hidden" name="course_id" value="{{$courses}}">
-                    {{csrf_field()}}
-                    {{ method_field('PATCH') }}
+            <form action="/frontend/enroll/thein" method="post"  enctype="multipart/form-data">
+                                @csrf
+
+                    <input type="hidden" name="course_id" value="{{$course->id}}">
+                    @endforeach
                 <div class="col-12 px-4">
                     <div class="d-flex align-items-end mt-4 mb-2">
                         <p class="h4 m-0"><span class="pe-1">Online Learning</span></p>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <p class="textmuted">Price</p>
-                        <input type="text" min="{{$course->fee}}" max="{{$course->fee}}" name="amount" require class="form-control">
+                        <input type="text"  name="amount" placeholder="Enter payable amount" required class="form-control">
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <p class="textmuted">Screenshot</p>
-                        <input type="file" class="form-control" name="image">
+                        <input type="file" class="form-control" name="image" required>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <p class="textmuted fw-bold">Total</p>
@@ -231,7 +231,7 @@ h5,
                                     
                                     <select name="payment_id" class="form-control"  id="">
                                     @foreach($payments as $pay)
-                                        <option value="">{{$pay->payment_number}}</option>
+                                        <option value="{{$pay->id}}">{{$pay->payment_number}}</option>
                                         @endforeach
                                     </select>
                                     
@@ -239,7 +239,7 @@ h5,
                                 <div class=" w-100 d-flex flex-column align-items-end">
                                     <p class="text-muted">Bank Name</p> 
                                     
-                                    <select name="payment_id" class="form-control"  id="">
+                                    <select class="form-control"  id="">
                                     @foreach($payments as $pay)
                                         <option value="">{{$pay->name}}</option>
                                         @endforeach
@@ -250,7 +250,7 @@ h5,
 
                             <div class="d-flex mb-5"> <span class="me-5">
                                     <p class="text-muted">Username</p>
-                                    <select name="payment_id" class="form-control"  id="">
+                                    <select class="form-control"  id="">
                                         @foreach($payments as $pay)
                                         <option value="">{{$pay->user_name}}</option>
                                         @endforeach
@@ -273,7 +273,6 @@ h5,
                 </form>
             </div>
         </div>
-        @endforeach
     </div>
 </div>
 
