@@ -105,7 +105,7 @@
             @endforeach
             
         </div>
-              {{ $data->links() }}
+              {{ $enrolls->links() }}
 
         </div>
       </div>

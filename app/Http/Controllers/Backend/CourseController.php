@@ -19,8 +19,8 @@ class CourseController extends Controller
     {
         //
         $courses = DB::table('courses')->join('categories', 'courses.Categories_ID', '=', 'categories.id')->select('categories.name', 'courses.id', 'courses.Categories_ID',
-         'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')->where('courses.deleted_at',NULL)->get();
-        $data = Courses::latest()->paginate(5);
+         'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')->where('courses.deleted_at',NULL)->latest()->paginate(6);
+        $data = Courses::latest()->paginate(6);
         
         return view('backend.course.index')
             ->with('courses', $courses)

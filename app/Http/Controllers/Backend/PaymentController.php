@@ -19,8 +19,8 @@ class PaymentController extends Controller
  public function index()
  {
      //
-     $payments = Payments::where('deleted_at', NULL)->get();
-     $data = Payments::latest()->paginate(5);
+     $payments = Payments::where('deleted_at', NULL)->latest()->paginate(6);
+     $data = Payments::latest()->paginate(6);
      
      return view('backend.payment.index')
          ->with('payments', $payments)
