@@ -6,13 +6,15 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\EnrollController;
 use App\Http\Controllers\Backend\PaymentController;
 
 use App\Http\Controllers\Frontend\CoursesController;
 use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Frontend\BlogsController;
 use App\Http\Controllers\Frontend\PaymentsController;
-use App\Http\Controllers\Frontend\EnrollController;
+use App\Http\Controllers\Frontend\EnrollsController;
+use App\Http\Controllers\Frontend\UsersController;
 use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +41,10 @@ Route::get('about', function () {
 
 Route::get('/', [CoursesController::class, 'second'])->name('welcome');
 Route::resource('frontend/course', CoursesController::class);
-// Route::resource('frontend/enroll', EnrollController::class);
-Route::post('frontend/enroll/thein', [EnrollController::class, 'thein'])->name('frontend.enroll.thein');
+Route::resource('frontend/user', UsersController::class);
+Route::resource('frontend/enroll', EnrollsController::class);
+Route::post('frontend/enroll/thein', [EnrollsController::class, 'thein'])->name('frontend.enroll.thein');
+Route::post('frontend/enroll/view', [EnrollsController::class, 'view'])->name('frontend.enroll.view');
 Route::get('payment/{id}/payment', [PaymentsController::class, 'payment'])->name('frontend.payment.index');
 Route::resource('/layouts/header', CategoriesController::class);
 Route::resource('frontend/blog', BlogsController::class);
@@ -73,6 +77,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
     Route::resource('course', CourseController::class);
     Route::resource('user', UserController::class);
     Route::resource('payment', PaymentController::class);
+    Route::resource('enrollment', EnrollController::class);
+    Route::get('/enrollment/{id}/approve', [EnrollController::class, 'approve'])->name('admin.enrollment.approve');
+    Route::get('/enrollment/{id}/reject', [EnrollController::class, 'reject'])->name('admin.enrollment.reject');
 
     // Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
     // Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');

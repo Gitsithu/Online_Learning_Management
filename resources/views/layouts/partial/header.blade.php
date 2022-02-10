@@ -81,7 +81,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white {{ request()->route()->getName() === 'enroll.index' || request()->route()->getName() === 'enroll.create' || request()->route()->getName() === 'enroll.edit'  ? 'bg-gradient-primary' : '' }} " href="../pages/rtl.html">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'enrollment.index' || request()->route()->getName() === 'enrollment.create' || request()->route()->getName() === 'enrollment.edit'  ? 'bg-gradient-primary' : '' }} " href="/admin/enrollment">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">payment</i>
             </div>

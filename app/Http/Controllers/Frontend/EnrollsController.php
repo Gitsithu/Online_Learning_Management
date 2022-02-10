@@ -4,11 +4,35 @@ namespace App\Http\Controllers\Frontend;
 use DB;
 use Auth;
 use App\Models\Enroll;
+use App\Models\User;
+use App\Models\Payments;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class EnrollController extends Controller
+class EnrollsController extends Controller
 {
+    public function index()
+    {
+    
+        // $users = User::where('deleted_at', NULL)->get();
+        // $payments = Payments::where('deleted_at', NULL)->get();
+        $enrolls = DB::table('enrolls')
+        ->join('courses', 'courses.id', '=', 'enrolls.Course_ID')
+        ->join('users', 'users.id', '=', 'enrolls.User_ID')
+        ->join('payments', 'payments.id', '=', 'enrolls.Payment_ID')
+        ->select('courses.id',
+        'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.Image', 'courses.description', 'courses.remark', 'courses.status',
+         'courses.created_at','courses.updated_at', 'enrolls.amount', 'users.name')
+        ->get();
+
+        $data = Enroll::latest()->paginate(5);
+        
+        
+        return view('frontend.enroll.index')
+            ->with('enrolls', $enrolls)
+            ->with('data', $data);
+
+    }
 
     public function thein(Request $request)
     {
@@ -23,8 +47,6 @@ class EnrollController extends Controller
 
         $payment_id = $request->input('payment_id');
 
-        $course_id = $request->input('course_id');
-
         $amount = $request->input('amount');
         // image
         $image =$request->file('image');
@@ -35,6 +57,13 @@ class EnrollController extends Controller
         
         $created_at = date("Y-m-d H:i:s");
    
+        $course_id = $request->input('course_id');
+        $validate= DB::select("select * from enrolls where Course_ID='$course_id' and User_ID=".$user_id);
+        if(!$validate)
+        {
+
+        
+        
            
             $new_obj = new Enroll();
         
@@ -59,16 +88,20 @@ class EnrollController extends Controller
                 return redirect()->route(
                     'enroll.index'
                 );
-            
-            
-    
-                    
-            $smessage = 'Fail, Error in Enroll info creating ...!';
+        }
+
+        else{
+            $smessage = 'Fail, You have already enrolled ...!';
             $request->session()->flash('fail', $smessage);
    
             return redirect()->route(
                 'enroll.index'
             );
+        }
+            
+    
+                    
+            
       
         
     }

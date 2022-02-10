@@ -64,7 +64,7 @@
       @if(Auth::check())
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-      <li><a href="#">Enroll</a></li>
+      <li><a href="/frontend/enroll">Enroll</a></li>
         </ul>
       </nav>
       @else
@@ -80,7 +80,7 @@
       <li class="dropdown">
       <a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                  <li><a href="#">{{ Auth::user()->name }}</a></li>
+                  <li><a href="/frontend/user">{{ Auth::user()->name }}</a></li>
                   <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">logout</a></li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf

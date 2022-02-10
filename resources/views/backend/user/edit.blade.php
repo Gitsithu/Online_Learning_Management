@@ -146,7 +146,7 @@
                             <div class="row">
 
                             <div class="card-footer">
-                                               <button type="submit" onclick="myFunction1()" class="btn btn-fill btn-primary"> <i class="tim-icons icon-send"></i> Update</button>
+                                               <button type="submit" class="btn btn-fill btn-primary"> <i class="tim-icons icon-send"></i> Update</button>
                                              </div>
                                              </div>
                             </div>
