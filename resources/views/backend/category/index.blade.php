@@ -99,7 +99,7 @@
             @endforeach
             
         </div>
-              {{ $data->links() }}
+              {{ $categories->links() }}
 
         </div>
       </div>
