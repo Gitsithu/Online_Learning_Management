@@ -51,7 +51,7 @@
 </section>
 
 <!-- End Navbar -->
-<div class="container-fluid py-2">
+<div class="container-fluid py-2" style="overflow-x: hidden;">
     <div class="row">
     <div class="col-10 offset-10">
 
