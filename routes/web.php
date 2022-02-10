@@ -39,7 +39,7 @@ Route::get('about', function () {
 
 Route::get('/', [CoursesController::class, 'second'])->name('welcome');
 Route::resource('frontend/course', CoursesController::class);
-Route::resource('frontend/enroll/store', EnrollController::class);
+Route::resource('frontend/enroll', EnrollController::class);
 Route::get('payment/{id}/payment', [PaymentsController::class, 'payment'])->name('frontend.payment.index');
 Route::resource('/layouts/header', CategoriesController::class);
 Route::resource('frontend/blog', BlogsController::class);

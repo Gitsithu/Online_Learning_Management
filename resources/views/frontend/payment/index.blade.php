@@ -192,19 +192,18 @@ h5,
         </div>
         <div class="col-lg-5 p-0 ps-lg-4">
             <div class="row m-0">
-            <form action="/frotend/enroll/store" method="post"  enctype="multipart/form-data">
+            <form action="/frontend/enroll/store" method="post"  enctype="multipart/form-data">
                     <!-- <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> -->
                     <input type="hidden" name="payment_id" value="{{$payments}}">
                     <input type="hidden" name="course_id" value="{{$courses}}">
-                    {{csrf_field()}}
-                    {{ method_field('PATCH') }}
+                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="col-12 px-4">
                     <div class="d-flex align-items-end mt-4 mb-2">
                         <p class="h4 m-0"><span class="pe-1">Online Learning</span></p>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <p class="textmuted">Price</p>
-                        <input type="text" min="{{$course->fee}}" max="{{$course->fee}}" name="amount" require class="form-control">
+                        <input type="text" min="{{$course->fee}}" max="{{$course->fee}}" name="amount" placeholder="Enter payable amount" require class="form-control">
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <p class="textmuted">Screenshot</p>
