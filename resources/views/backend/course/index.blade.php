@@ -109,7 +109,7 @@
             @endforeach
             
         </div>
-              {{ $data->links() }}
+              {{ $courses->links() }}
 
         </div>
       </div>

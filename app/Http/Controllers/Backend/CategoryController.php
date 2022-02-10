@@ -19,8 +19,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Categories::where('deleted_at', NULL)->latest()->paginate(5);
-        $data = Categories::latest()->paginate(5);
+        $categories = Categories::where('deleted_at', NULL)->latest()->paginate(6);
+        $data = Categories::latest()->paginate(6);
         
         return view('backend.category.index')
             ->with('categories', $categories)

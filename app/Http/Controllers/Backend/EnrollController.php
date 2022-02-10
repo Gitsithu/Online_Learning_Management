@@ -20,8 +20,8 @@ class EnrollController extends Controller
         ->select('enrolls.id',
         'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.Image', 'courses.description', 'courses.remark', 'enrolls.status',
          'courses.created_at','courses.updated_at', 'enrolls.amount', 'users.name')
-        ->get();
-        $data = Enroll::latest()->paginate(5);
+        ->latest()->paginate(6);
+        $data = Enroll::latest()->paginate(6);
         
         return view('backend.enrollment.index')
             ->with('enrolls', $enrolls)

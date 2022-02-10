@@ -100,7 +100,7 @@
             @endforeach
             
         </div>
-              {{ $data->links() }}
+              {{ $blogs->links() }}
 
         </div>
       </div>

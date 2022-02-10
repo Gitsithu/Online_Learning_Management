@@ -102,7 +102,7 @@
             @endforeach
             
         </div>
-              {{ $data->links() }}
+              {{ $payments->links() }}
 
         </div>
       </div>

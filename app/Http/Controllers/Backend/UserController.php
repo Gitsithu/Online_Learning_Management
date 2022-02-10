@@ -18,8 +18,8 @@ class UserController extends Controller
     public function index()
     {
 
-        $users=DB::select('SELECT * from users where role_id=1');
-        $data = User::latest()->paginate(5);
+        $users=DB::select('SELECT * from users where role_id=1')->get();
+        $data = User::latest()->paginate(6);
         
         return view('backend.user.index')
             ->with('users', $users)
