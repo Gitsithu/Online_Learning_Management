@@ -10,22 +10,26 @@ use Illuminate\Http\Request;
 class EnrollController extends Controller
 {
 
-    public function store(Request $request)
+    public function thein(Request $request)
     {
+        
         $this->validate($request, [
             'price' => 'required',
             'image' => 'required',
    
-   
         ]);
+        
         try{
-            
+           
         $loginUser = Auth::user();
         $user_id = $loginUser->id;
-        $payment_id = $request->input('payment_id');
-        $course_id = $request->input('course_id');
-        $amount = $request->input('amount');
         
+        $payment_id = $request->input('payment_id');
+        
+        $course_id = $request->input('course_id');
+        
+        $amount = $request->input('amount');
+        dd($amount);
         // image
         $image =$request->file('image');
         $new_names = rand() . '.' . $image->getClientOriginalExtension();
@@ -73,5 +77,15 @@ class EnrollController extends Controller
             );
       
         }
+    }
+
+    public function show()
+    {
+        //
+    }
+
+    public function update()
+    {
+
     }
 }
