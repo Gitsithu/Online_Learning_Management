@@ -22,8 +22,9 @@ class PaymentsController extends Controller
 
 
     $data = Payments::latest()->paginate(5);
-    
+    $categories = DB::table('categories')->get();
     return view('frontend.payment.index')
+    ->with('categories',$categories)
         ->with('payments', $payments)
         ->with('courses', $courses)
         ->with('data', $data);

@@ -14,7 +14,9 @@ class CoursesController extends Controller
          'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.Image', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')->where('courses.deleted_at',NULL)->get();
         $data = Courses::latest()->paginate(5);
         
+        $categories = DB::table('categories')->get();
         return view('frontend.course.index')
+        ->with('categories',$categories)
             ->with('courses', $courses)
             ->with('data', $data);
     }
@@ -25,7 +27,9 @@ class CoursesController extends Controller
          'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.Image', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')->where('courses.deleted_at',NULL)->get();
         $data = Courses::latest()->paginate(5);
         
+        $categories = DB::table('categories')->get();
         return view('welcome')
+            ->with('categories',$categories)
             ->with('courses', $courses)
             ->with('data', $data);
     }

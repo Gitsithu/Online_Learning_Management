@@ -55,7 +55,9 @@
           <li><a href="/contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#"></a></li>
+              @foreach($categories as $category)
+              <li><a href="{{$category->id}}">{{$category->name}}</a></li>
+              @endforeach
             </ul>
           </li>
         </ul>
