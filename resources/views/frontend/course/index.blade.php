@@ -15,7 +15,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-    @foreach($courses as $course)
+    @foreach($courses as $i=>$course)
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
               <img src="{{ $course->Image}}" class="img-fluid" alt="...">
@@ -43,7 +43,7 @@
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bx bx-user"></i>&nbsp;50
                     &nbsp;&nbsp;
-                    <i class="bx bx-heart"></i>&nbsp;65
+                    <i class="bx bx-heart" id="course{{$course->id}}" onclick="favourite({{$course->id}})">&nbsp;{{$count[$i]}}</i>
                   </div>
                 </div>
               </div>
@@ -57,4 +57,25 @@
 
   </main><!-- End #main -->
 
+<script>
+  function favourite(id)
+  {
+
+        $.ajax({
+            type: 'POST',
+            url: '/frontend/favourite/add',
+            data: {
+                _token: "{{csrf_token()}}",
+                course_id: id
+            },
+            dataType: 'json',
+            success: function(data) {
+              let temp_data = data.returned_obj;
+              console.log(temp_data.objs);
+            $("#course"+id).html("&nbsp;"+temp_data.objs);
+            $("#course"+id).trigger("chosen:updated");
+            }
+        });
+  }
+</script>
 @include('layouts.footer');

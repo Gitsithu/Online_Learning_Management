@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\EnrollController;
 use App\Http\Controllers\Backend\PaymentController;
 
+use App\Http\Controllers\Frontend\FavouriteController;
 use App\Http\Controllers\Frontend\CoursesController;
 use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Frontend\BlogsController;
@@ -56,7 +57,7 @@ Route::get('payment/{id}/payment', [PaymentsController::class, 'payment'])->name
 Route::get('course/{id}/payornot', [CoursesController::class, 'payornot'])->name('frontend.course.payornot');
 Route::resource('/layouts/header', CategoriesController::class);
 Route::resource('frontend/blog', BlogsController::class);
-
+Route::post('frontend/favourite/add', [FavouriteController::class, 'add'])->name('frontend.favourite.add');
 Route::get('course_detail', function () {
     return view('course_detail');
 });
