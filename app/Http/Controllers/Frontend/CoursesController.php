@@ -79,7 +79,16 @@ class CoursesController extends Controller
          ->where('courses.deleted_at',NULL)->get();
         $data = Courses::latest()->paginate(5);
         $categories = DB::table('categories')->get();
+
+        $count = array();
+        foreach($courses as $i=>$course){
+        $course_id = $course->id;
+        
+        $count[] = DB::table('favourites')->where('Course_ID',$course_id)->count();
+        
+        }
         return view('frontend.course.index')
+        ->with('count',$count)
         ->with('categories',$categories)
             ->with('courses', $courses)
             ->with('data', $data);
