@@ -71,6 +71,7 @@
             dataType: 'json',
             success: function(data) {
               let temp_data = data.returned_obj;
+              console.log(temp_data);
               console.log(temp_data.objs);
             $("#course"+id).html("&nbsp;"+temp_data.objs);
             $("#course"+id).trigger("chosen:updated");
