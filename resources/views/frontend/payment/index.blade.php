@@ -159,13 +159,13 @@ h5,
         <div class="container-fluid">
              <div class="row">
                  @if (session('success'))
-                 <div class="flash-message col-md-12">
+                 <div class="flash-message col-md-3">
                      <div class="alert alert-success ">
                          {{session('success')}}
                      </div>
                  </div>
                  @elseif(session('fail'))
-                 <div class="flash-message col-md-12">
+                 <div class="flash-message col-md-3">
                      <div class="alert alert-danger">
                          {{session('fail')}}
                      </div>
@@ -173,7 +173,7 @@ h5,
 
                  @endif
                        @if (count($errors) > 0)
-                                       <div class="content mt-3">
+                                       <div class="content col-md-6 offset-3">
                                            <!-- div class=row content start -->
                                            <div class="animated fadeIn">
                                                <!-- div class=FadeIn start -->

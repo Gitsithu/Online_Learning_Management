@@ -149,9 +149,10 @@
               </div>
 
               <div class="form-group mt-3">
-                <textarea class="form-control" name="address" rows="5" placeholder="Address" required></textarea>
+                <textarea class="form-control" name="address" rows="5" placeholder="Address" required>{{ isset($user)? $user->address:Request::old('address') }}</textarea>
               </div>
-              <div class="text-center"><button type="submit"  onclick="myFunction1()" >Update</button></div>
+              <br>
+              <div class="text-center"><button type="submit" style="background-color:lightgreen;"  onclick="myFunction1()" >Update</button></div>
             </form>
 
           </div>
