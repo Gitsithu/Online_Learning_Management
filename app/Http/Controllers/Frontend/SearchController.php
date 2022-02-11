@@ -18,8 +18,15 @@ class SearchController extends Controller
          'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.Image', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')
          ->where('name','LIKE','%'.$search.'%')
          ->where('courses.deleted_at',NULL)->get();
-            
-                return view('frontend.course.index')
+         $count = array();
+         foreach($courses as $i=>$course){
+         $course_id = $course->id;
+         
+         $count[] = DB::table('favourites')->where('Course_ID',$course_id)->count();
+         
+         }
+         return view('frontend.course.index')
+         ->with('count',$count)   
                 ->with('categories',$categories)
                 ->with('courses',$courses);
     }
