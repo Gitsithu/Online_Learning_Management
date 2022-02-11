@@ -91,7 +91,7 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-          <form action="/frontend/user/{{ isset($user)? $user->id:0 }}" method="post" enctype="multipart/form-data">
+          <form action="/frontend/users/{{ isset($user)? $user->id:0 }}" method="post" enctype="multipart/form-data">
                     <!-- <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> -->
                     {{csrf_field()}}
                     {{ method_field('PATCH') }}

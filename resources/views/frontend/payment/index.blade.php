@@ -155,6 +155,55 @@ h5,
         </style>
     </head>
     <body>
+    <section class="content">
+        <div class="container-fluid">
+             <div class="row">
+                 @if (session('success'))
+                 <div class="flash-message col-md-12">
+                     <div class="alert alert-success ">
+                         {{session('success')}}
+                     </div>
+                 </div>
+                 @elseif(session('fail'))
+                 <div class="flash-message col-md-12">
+                     <div class="alert alert-danger">
+                         {{session('fail')}}
+                     </div>
+                 </div>
+
+                 @endif
+                       @if (count($errors) > 0)
+                                       <div class="content mt-3">
+                                           <!-- div class=row content start -->
+                                           <div class="animated fadeIn">
+                                               <!-- div class=FadeIn start -->
+                                               <div class="card">
+                                                   <!-- card start -->
+
+                                                   <div class="card-body">
+                                                       <!-- card-body start -->
+
+
+                                                       <div class="row">
+                                                           <!-- div class=row One start -->
+                                                           @foreach ($errors->all() as $error)
+                                                           <div class="col-md-12">
+                                                               <!-- div class=col 12 One start -->
+                                                               <p class="text-danger">* {{ $error }}</p>
+                                                           </div><!-- div class=col 12 One end -->
+                                                           @endforeach
+                                                       </div><!-- div class=row One end -->
+
+
+                                                   </div> <!-- card-body end -->
+
+                                               </div><!-- card end -->
+                                           </div><!-- div class=FadeIn start -->
+                                       </div><!-- div class=row content end -->
+                                       @endif
+             </div>
+
+</section>
     <div class="container">
     <div class="row m-0">
     @foreach($courses as $course)
@@ -229,7 +278,7 @@ h5,
                             <div class="d-flex mb-4"> <span class="">
                                     <p class="text-muted">Card number</p> 
                                     
-                                    <select name="payment_id" class="form-control"  id="">
+                                    <select onchange="slip()" name="payment_id" id="payment_id" class="form-control"  id="">
                                     @foreach($payments as $pay)
                                         <option value="{{$pay->id}}">{{$pay->payment_number}}</option>
                                         @endforeach
@@ -277,5 +326,30 @@ h5,
 </div>
 
 
+
     </body>
 </html>
+
+<script>
+
+    
+function slip() {
+        
+        var payment_id = $("#payment_id").val();
+        $.ajax({
+            type: 'POST',
+            url: '/frontend/enroll/thein',
+            data: {
+                _token: "{{csrf_token()}}",
+                payment_id: payment_id
+            },
+            dataType: 'json',
+            success: function(data) {
+                $("#payment_number").html(data.msg);
+                console.log(data.msg);
+            }
+        });
+    }
+    
+    
+</script>

@@ -25,7 +25,7 @@
                   {{$user->address}}
                 </p>
                 <div class="social">
-                <a onclick="return myFunction();" href='/frontend/user/{{ $user->id }}/edit'><i class="bx bx-user">Edit</i></a>
+                <a onclick="return myFunction();" href='/frontend/users/{{ $user->id }}/edit'><i class="bx bx-user">Edit</i></a>
                 </div>
               </div>
               @endforeach

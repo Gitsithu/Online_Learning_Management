@@ -20,17 +20,19 @@ class CategoriesController extends Controller
 
     }
 
-    public function second()
-    {
-        //
-        $categories = Categories::where('deleted_at', NULL)->get();
-        $data = Categories::latest()->paginate(5);
+    // public function second()
+    // {
+    //     //
+    //     $categories = Categories::where('deleted_at', NULL)->get();
+    //     $data = Categories::latest()->paginate(5);
         
-        return view('welcome')
-            ->with('categories', $categories)
-            ->with('data', $data);
+    //     return view('welcome')
+    //         ->with('categories', $categories)
+    //         ->with('data', $data);
 
-    }
+    // }
+
+    
 
     public function show($id)
     {

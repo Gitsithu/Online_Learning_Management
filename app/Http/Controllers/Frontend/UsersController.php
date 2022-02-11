@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 use DB;
 use Auth;
 use App\Models\User;
+use App\Models\Categories;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,12 @@ class UsersController extends Controller
         $loginUser = Auth::user();
         $loginUserId = $loginUser->id;
         $users=DB::select('SELECT * from users where role_id=2 and id='.$loginUserId);
+        $categories = Categories::where('deleted_at', NULL)->get();
         $data = User::latest()->paginate(5);
         
-        return view('frontend.user.index')
+        return view('frontend.users.index')
             ->with('users', $users)
+            ->with('categories', $categories)
             ->with('data', $data);
 
     }
@@ -29,17 +32,17 @@ class UsersController extends Controller
      */
     public function create()
     {
-
+        
         $user=DB::select('SELECT * from users where deleted_at is null');
-        return view('frontend.user.edit')
+        return view('frontend.users.edit')
         ->with('user', $user);
     }
 
     public function edit($id)
     {
-        //
+        $categories = Categories::where('deleted_at', NULL)->get();
         $user = DB::table('users')->where('id', $id)->first();
-        return view('frontend.user.edit', ['user' => $user]);
+        return view('frontend.users.edit', ['categories'=> $categories], ['user' => $user]);
     
     }
 
@@ -125,7 +128,7 @@ class UsersController extends Controller
                     // );
     
                 return redirect()->route(
-                    'frontend.user.index'
+                    'users.index'
                 );
         }
             
@@ -136,7 +139,7 @@ class UsersController extends Controller
             $request->session()->flash('fail', $smessage);
 
             return redirect()->route(
-                'frontend.user.index'
+                'users.index'
             );
         }
 

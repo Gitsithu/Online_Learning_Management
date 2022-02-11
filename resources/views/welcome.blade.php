@@ -5,9 +5,20 @@
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Learning Today,<br>Leading Tomorrow</h1>
       <h2>We are team of talented designers making websites with Bootstrap</h2>
-      <a href="courses.html" class="btn-get-started">Get Started</a>
+      <form action="/search">
+      {{ csrf_field() }}
+      <div class="row">
+        <div class="col-md-6">
+            <input type="search" name="search"  class="form-control mt-3" placeholder="search">
+        </div>
+      <div class="col-md-6" style="margin-left:-18px; margin-top:16px;">
+      <button type="submit" class="btn btn-success my-2 my-sm-0">Search</button>
+</div>
+      
+      </div>
+      </form>
     </div>
-  </section><!-- End Hero -->
+  </section><!-- End Hero --> 
 
   <main id="main">
 
@@ -27,9 +38,58 @@
 
     <!-- ======= Why Us Section ======= -->
     <!-- ======= Popular Courses Section ======= -->
-    <section id="popular-courses" class="courses">
+
+
+
+    <section id="popular-courses" class="courses" style="margin-top: -130px;">
       <div class="container" data-aos="fade-up">
 
+        <div class="container-fluid">
+             <div class="row">
+                 @if (session('success'))
+                 <div class="flash-message col-md-12">
+                     <div class="alert alert-success ">
+                         {{session('success')}}
+                     </div>
+                 </div>
+                 @elseif(session('fail'))
+                 <div class="flash-message col-md-12">
+                     <div class="alert alert-danger">
+                         {{session('fail')}}
+                     </div>
+                 </div>
+
+                 @endif
+                       @if (count($errors) > 0)
+                                       <div class="content mt-3">
+                                           <!-- div class=row content start -->
+                                           <div class="animated fadeIn">
+                                               <!-- div class=FadeIn start -->
+                                               <div class="card">
+                                                   <!-- card start -->
+
+                                                   <div class="card-body">
+                                                       <!-- card-body start -->
+
+
+                                                       <div class="row">
+                                                           <!-- div class=row One start -->
+                                                           @foreach ($errors->all() as $error)
+                                                           <div class="col-md-12">
+                                                               <!-- div class=col 12 One start -->
+                                                               <p class="text-danger">* {{ $error }}</p>
+                                                           </div><!-- div class=col 12 One end -->
+                                                           @endforeach
+                                                       </div><!-- div class=row One end -->
+
+
+                                                   </div> <!-- card-body end -->
+
+                                               </div><!-- card end -->
+                                           </div><!-- div class=FadeIn start -->
+                                       </div><!-- div class=row content end -->
+                                       @endif
+             </div>
         <div class="section-title">
           <h2>Courses</h2>
           <p>Popular Courses</p>
@@ -43,7 +103,7 @@
                <div class="course-content">
               @if(Auth::check())
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <a href="/payment"><h4>Enroll</h4></a>
+                  <a href="/payment/{{$course->id}}/payment"><h4>Enroll</h4></a>
                   <p class="price">{{ $course->fee }} - mmk</p>
                 </div>
                 @else

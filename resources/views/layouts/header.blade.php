@@ -42,31 +42,31 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Learn Here</a></h1>
+      <h1 class="logo me-auto"><a href="/">Learn Here</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="active" href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
           <li><a href="/frontend/course">Courses</a></li>
           <li><a href="/frontend/blog">Blog</a></li>
           <li><a href="/contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               @foreach($categories as $category)
-              <li><a href="{{$category->id}}">{{$category->name}}</a></li>
+              <li><a href="/frontend/course/{{$category->id}}/show">{{$category->name}}</a></li>
               @endforeach
             </ul>
           </li>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
       @if(Auth::check())
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-      <li><a href="/frontend/enroll">Enroll</a></li>
+      <li><a href="/frontend/preview">Enroll</a></li>
         </ul>
       </nav>
       @else
@@ -75,6 +75,7 @@
       <a href="/login" class="get-started-btn">Login</a>
       @if (Route::has('register'))
       <a href="/register" class="get-started-btn">register</a>
+
       @endif
       @else
       <nav id="navbar" class="navbar order-last order-lg-0">
@@ -82,7 +83,7 @@
       <li class="dropdown">
       <a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                  <li><a href="/frontend/user">{{ Auth::user()->name }}</a></li>
+                  <li><a href="/frontend/users">{{ Auth::user()->name }}</a></li>
                   <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">logout</a></li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
