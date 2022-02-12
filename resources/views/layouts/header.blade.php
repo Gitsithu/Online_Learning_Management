@@ -51,7 +51,6 @@
           <li><a class="active" href="/">Home</a></li>
           <li><a href="/frontend/course">Courses</a></li>
           <li><a href="/frontend/blog">Blog</a></li>
-          <li><a href="/contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               @foreach($categories as $category)
@@ -67,6 +66,7 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
       <li><a href="/frontend/preview">Enroll</a></li>
+      <li><a href="/frontend/feedback">Feedback</a></li>
         </ul>
       </nav>
       @else

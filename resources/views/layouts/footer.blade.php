@@ -83,7 +83,9 @@
   <script src="/frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/frontend/assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="/frontend/assets/vendor/php-email-form/validate.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
   <!-- Template Main JS File -->
   <script src="/frontend/assets/js/main.js"></script>
 

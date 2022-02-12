@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\EnrollsController;
 use App\Http\Controllers\Frontend\UsersController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\PreviewController;
+use App\Http\Controllers\Frontend\FeedbackController;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\HomeController;
 /*
@@ -45,14 +46,22 @@ Route::get('index', function () {
 Route::get('/', [CoursesController::class, 'second'])->name('welcome');
 Route::resource('/search', SearchController::class);
 Route::resource('frontend/course', CoursesController::class);
+Route::resource('frontend/feedback', FeedbackController::class);
+Route::post('frontend/feedback/save', [FeedbackController::class, 'save'])->name('frontend.feedback.save');
 Route::get('frontend/course/{id}/show', [CoursesController::class, 'show'])->name('frontend.course.show');
 Route::resource('about', AboutController::class);
 Route::resource('frontend/users', UsersController::class);
 Route::resource('frontend/enroll', EnrollsController::class);
+
 Route::resource('frontend/preview', PreviewController::class);
+
 Route::get('enroll/{id}/pre', [EnrollsController::class, 'pre'])->name('frontend.enroll.pre');
 Route::post('frontend/enroll/thein', [EnrollsController::class, 'thein'])->name('frontend.enroll.thein');
 Route::post('frontend/enroll/view', [EnrollsController::class, 'view'])->name('frontend.enroll.view');
+
+Route::post('frontend/payment/bankname', [PaymentsController::class, 'bankname'])->name('frontend.payment.bankname');
+Route::post('frontend/payment/bankname_2', [PaymentsController::class, 'bankname_2'])->name('frontend.payment.bankname_2');
+
 Route::get('payment/{id}/payment', [PaymentsController::class, 'payment'])->name('frontend.payment.index');
 Route::get('course/{id}/payornot', [CoursesController::class, 'payornot'])->name('frontend.course.payornot');
 Route::resource('/layouts/header', CategoriesController::class);

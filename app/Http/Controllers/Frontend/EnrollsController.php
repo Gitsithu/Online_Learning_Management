@@ -108,7 +108,7 @@ class EnrollsController extends Controller
                 //     'UserController@profile', ['id' => 1]
                     // );
     
-                    return view('frontend.preview.index')
+                    return redirect()->route('preview.index')
                     ->with('categories', $categories)
             ->with('enrolls', $enrolls);
         }

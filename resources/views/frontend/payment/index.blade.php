@@ -276,22 +276,23 @@ h5,
                         <div class="col-12 px-4">
                         
                             <div class="d-flex mb-4"> <span class="">
-                                    <p class="text-muted">Card number</p> 
+                                    <p class="text-muted">Bank Name</p> 
                                     
-                                    <select onchange="slip()" name="payment_id" id="payment_id" class="form-control"  id="">
+                                    <select onchange="slip()" id="payment_id"  name="payment_id"  class="form-control">
+                                    <option value="">Please Select A Bank</option>
                                     @foreach($payments as $pay)
-                                        <option value="{{$pay->id}}">{{$pay->payment_number}}</option>
+                                        <option value="{{$pay->id}}">{{$pay->name}}</option>
                                         @endforeach
                                     </select>
                                     
                                 </span>
                                 <div class=" w-100 d-flex flex-column align-items-end">
-                                    <p class="text-muted">Bank Name</p> 
+                                    <p class="text-muted">Card Number</p> 
                                     
-                                    <select class="form-control"  id="">
-                                    @foreach($payments as $pay)
-                                        <option value="">{{$pay->name}}</option>
-                                        @endforeach
+                                    <select  class="form-control" id="payment_id_1">
+                                    <!-- @foreach($payments as $pay)
+                                        <option value="">{{$pay->payment_number}}</option>
+                                        @endforeach -->
                                     </select>
                                     
                                 </div>
@@ -299,10 +300,10 @@ h5,
 
                             <div class="d-flex mb-5"> <span class="me-5">
                                     <p class="text-muted">Username</p>
-                                    <select class="form-control"  id="">
-                                        @foreach($payments as $pay)
+                                    <select class="form-control"  id="payment_id_2">
+                                        <!-- @foreach($payments as $pay)
                                         <option value="">{{$pay->user_name}}</option>
-                                        @endforeach
+                                        @endforeach -->
                                     </select>
                                 </span>
                                 
@@ -329,27 +330,56 @@ h5,
 
     </body>
 </html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
 
-<script>
 
-    
 function slip() {
         
         var payment_id = $("#payment_id").val();
         $.ajax({
             type: 'POST',
-            url: '/frontend/enroll/thein',
+            url: '/frontend/payment/bankname',
             data: {
                 _token: "{{csrf_token()}}",
                 payment_id: payment_id
             },
             dataType: 'json',
             success: function(data) {
-                $("#payment_number").html(data.msg);
+                $("#payment_id_1").html(data.msg);
+                console.log(data.msg);
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '/frontend/payment/bankname_2',
+            data: {
+                _token: "{{csrf_token()}}",
+                payment_id: payment_id
+            },
+            dataType: 'json',
+            success: function(data) {
+                $("#payment_id_2").html(data.msg);
                 console.log(data.msg);
             }
         });
     }
+        
+        var payment_id = $("#payment_id").val();
+        $.ajax({
+            type: 'POST',
+            url: '/frontend/payment/bankname_2',
+            data: {
+                _token: "{{csrf_token()}}",
+                payment_id: payment_id
+            },
+            dataType: 'json',
+            success: function(data) {
+                $("#payment_id_2").html(data.msg);
+                console.log(data.msg);
+            }
+        });
     
     
 </script>
