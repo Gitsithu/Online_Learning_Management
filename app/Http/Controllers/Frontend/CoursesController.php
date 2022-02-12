@@ -26,7 +26,23 @@ class CoursesController extends Controller
         $count[] = DB::table('favourites')->where('Course_ID',$course_id)->count();
         
         }
+
+        
+
+        $favouriteOrNot = array();
+        if(Auth::check())
+        {
+            $loginUserId = Auth::user()->id;    
+            foreach($courses as $i=>$course)
+            {
+                $course_id = $course->id;
+        
+                $favouriteOrNot[] = DB::table('favourites')->where('User_ID',$loginUserId)->where('Course_ID',$course_id)->count();
+        
+            }
+        }
         return view('frontend.course.index')
+        ->with('favouriteOrNot',$favouriteOrNot)
         ->with('count',$count)
         ->with('categories',$categories)
             ->with('courses', $courses)
@@ -80,6 +96,7 @@ class CoursesController extends Controller
         $data = Courses::latest()->paginate(5);
         $categories = DB::table('categories')->get();
 
+        
         $count = array();
         foreach($courses as $i=>$course){
         $course_id = $course->id;
@@ -87,7 +104,20 @@ class CoursesController extends Controller
         $count[] = DB::table('favourites')->where('Course_ID',$course_id)->count();
         
         }
+
+        $loginUser = Auth::user();
+        $loginUserId = $loginUser->id;
+
+        $favouriteOrNot = array();
+        foreach($courses as $i=>$course){
+        $course_id = $course->id;
+        
+        $favouriteOrNot[] = DB::table('favourites')->where('User_ID',$loginUserId)->where('Course_ID',$course_id)->count();
+        
+        }
+
         return view('frontend.course.index')
+        ->with('favouriteOrNot',$favouriteOrNot)
         ->with('count',$count)
         ->with('categories',$categories)
             ->with('courses', $courses)
