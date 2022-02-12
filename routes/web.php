@@ -58,6 +58,7 @@ Route::get('course/{id}/payornot', [CoursesController::class, 'payornot'])->name
 Route::resource('/layouts/header', CategoriesController::class);
 Route::resource('frontend/blog', BlogsController::class);
 Route::post('frontend/favourite/add', [FavouriteController::class, 'add'])->name('frontend.favourite.add');
+// Route::post('frontend/unfavourite/add', [FavouriteController::class, 'remove'])->name('frontend.unfavourite.add');
 Route::get('course_detail', function () {
     return view('course_detail');
 });
