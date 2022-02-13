@@ -66,6 +66,7 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
       <li><a href="/frontend/preview">Enroll</a></li>
+      <li><a href="/frontend/favourite/view">Favourite</a></li>
       <li><a href="/frontend/feedback">Feedback</a></li>
         </ul>
       </nav>

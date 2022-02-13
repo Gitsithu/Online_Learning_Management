@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use DB;
 use Auth;
 use App\Models\Enroll;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,18 @@ class ReportController extends Controller
         
         return view('backend.report.index')
             ->with('enrolls', $enrolls)
+            ->with('data', $data);
+
+    }
+
+    public function user()
+    {
+        $users = User::where('Role_ID', 2)->get();
+        // $payments = Payments::where('deleted_at', NULL)->get();
+        $data = User::latest()->paginate(6);
+        
+        return view('backend.user_report.index')
+            ->with('users', $users)
             ->with('data', $data);
 
     }

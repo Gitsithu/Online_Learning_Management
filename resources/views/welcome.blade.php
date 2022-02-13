@@ -128,7 +128,7 @@
                         <i class="{{ $favouriteOrNot[$i ?? ''] > 0 ? 'bx bx-heart' : 'bx bx-heart' }} " id="course{{$course->id}}" onclick="togglefavourite({{$course->id}})">&nbsp;{{$count[$i]}}</i>
                         
                     @else
-                      <i class="bx bx-heart" id="course{{$course->id}}" >&nbsp;{{$count[$i]}}</i>
+                      <i class="bx bx-heart" onclick="login()" id="course{{$course->id}}" >&nbsp;{{$count[$i]}}</i>
                     @endif
                   </div>
                 </div>
@@ -295,6 +295,12 @@
 
 
 <script>
+
+function login() {
+                    if(!confirm("Firstly! you need to login to do this"))
+                    event.preventDefault();
+                }
+
   function togglefavourite(id)
   {
     var checkExist = $("#checkExist"+id).val();
@@ -332,5 +338,6 @@
 
 
   }
+  </script>
 
 @include('layouts.footer')

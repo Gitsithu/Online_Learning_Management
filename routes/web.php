@@ -10,7 +10,9 @@ use App\Http\Controllers\Backend\EnrollController;
 use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Backend\FeedController;
 use App\Http\Controllers\Backend\ReportController;
-
+use App\Http\Controllers\Backend\PDFController;
+use App\Http\Controllers\Backend\MyController;
+use App\Http\Controllers\Backend\MyUserController;
 
 use App\Http\Controllers\Frontend\FavouriteController;
 use App\Http\Controllers\Frontend\CoursesController;
@@ -70,6 +72,7 @@ Route::get('course/{id}/payornot', [CoursesController::class, 'payornot'])->name
 Route::resource('/layouts/header', CategoriesController::class);
 Route::resource('frontend/blog', BlogsController::class);
 Route::post('frontend/favourite/add', [FavouriteController::class, 'add'])->name('frontend.favourite.add');
+Route::get('frontend/favourite/view', [FavouriteController::class, 'view'])->name('frontend.favourite.view');
 // Route::post('frontend/unfavourite/add', [FavouriteController::class, 'remove'])->name('frontend.unfavourite.add');
 Route::get('course_detail', function () {
     return view('course_detail');
@@ -100,7 +103,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
     Route::resource('user', UserController::class);
     Route::resource('payment', PaymentController::class);
     Route::resource('feed', FeedController::class);
+
     Route::resource('report', ReportController::class);
+    Route::get('/user_report/user', [ReportController::class, 'user'])->name('admin.user_report.user');
+
     Route::resource('enrollment', EnrollController::class);
     Route::get('/enrollment/{id}/approve', [EnrollController::class, 'approve'])->name('admin.enrollment.approve');
     Route::get('/enrollment/{id}/reject', [EnrollController::class, 'reject'])->name('admin.enrollment.reject');
@@ -120,6 +126,18 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
     // Route::resource('/roles', RoleController::class);
     // Route::get('/roles/role_permission/{roleId}', [RoleController::class, 'rolePermission'])->name('roles.role_permission');
     // Route::post('/roles/role_permission/{roleId}', [RoleController::class, 'rolePermissionAssign'])->name('roles.role_permission_assign');
+
+    Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
+    Route::get('generate-userpdf', [PDFController::class, 'generateUSERPDF']);
+    // Route::get('generate-excel', [PDFController::class, 'generateEXCEL']);
+
+    Route::get('importExportView', [MyController::class, 'importExportView']);
+    Route::get('export', [MyController::class, 'export'])->name('export');
+    Route::post('import', [MyController::class, 'import'])->name('import');
+
+    Route::get('importExportView', [MyUserController::class, 'importExportView']);
+    Route::get('user_export', [MyUserController::class, 'user_export'])->name('user_export');
+    Route::post('import', [MyUserController::class, 'import'])->name('import');
 
 
 });
