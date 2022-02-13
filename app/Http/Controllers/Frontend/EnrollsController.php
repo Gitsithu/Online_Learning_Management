@@ -123,10 +123,35 @@ class EnrollsController extends Controller
     }
 
         else{
+            $courses = DB::table('courses')->join('categories', 'courses.Categories_ID', '=', 'categories.id')->select('categories.name', 'courses.id', 'courses.Categories_ID',
+            'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.Image', 'courses.description', 'courses.remark', 'courses.status', 'courses.created_at','courses.updated_at')
+            ->where('courses.deleted_at',NULL)->get();
+            $count = array();
+            foreach($courses as $i=>$course){
+            $course_id = $course->id;
+            
+            $count[] = DB::table('favourites')->where('Course_ID',$course_id)->count();
+            
+            }
+            $favouriteOrNot = array();
+            if(Auth::check())
+            {
+                $loginUserId = Auth::user()->id;    
+                foreach($courses as $i=>$course)
+                {
+                    $course_id = $course->id;
+            
+                    $favouriteOrNot[] = DB::table('favourites')->where('User_ID',$loginUserId)->where('Course_ID',$course_id)->count();
+            
+                }
+            }
             $smessage = 'Fail, You have already enrolled ...!';
             $request->session()->flash('fail', $smessage);
    
-            return redirect()->route('welcome');
+            return redirect()->route('welcome')
+            ->with('count',$count) 
+            ->with('favouriteOrNot', $favouriteOrNot)  
+            ;
         }
   
     }

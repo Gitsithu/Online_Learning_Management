@@ -45,10 +45,10 @@
                     &nbsp;&nbsp;
                     @if(Auth::check())
                         <input type="hidden" id="checkExist{{$course->id}}" value="{{ $favouriteOrNot[$i] > 0 ? 1 : 2 }}">
-                        <i class="{{ $favouriteOrNot[$i] > 0 ? 'bx bx-user' : 'bx bx-heart' }} " id="course{{$course->id}}" onclick="togglefavourite({{$course->id}})">&nbsp;{{$count[$i]}}</i>
+                        <i class="{{ $favouriteOrNot[$i] > 0 ? 'bx bx-heart' : 'bx bx-heart' }} " id="course{{$course->id}}" onclick="togglefavourite({{$course->id}})">&nbsp;{{$count[$i]}}</i>
                         
                     @else
-                      <i class="bx bx-heart" id="course{{$course->id}}" >&nbsp;{{$count[$i]}}</i>
+                      <i class="bx bx-heart" onclick="login()" id="course{{$course->id}}" >&nbsp;{{$count[$i]}}</i>
                     @endif
                    
                   </div>
@@ -65,6 +65,11 @@
   </main><!-- End #main -->
 
 <script>
+        function login() {
+                    if(!confirm("Firstly! you need to login to do this"))
+                    event.preventDefault();
+                }
+        
   function togglefavourite(id)
   {
     var checkExist = $("#checkExist"+id).val();
@@ -86,15 +91,15 @@
             if(checkExist == 2)
             {
               $("#checkExist"+id).val(1);
-              $("#course"+id).removeClass("bx bx-heart");
-              $("#course"+id).addClass("bx bx-user");
+              $("#course"+id).removeClass("bx bx-heart").css("color", "grey");
+              $("#course"+id).addClass("bx bx-heart-circle").css("color", "red");
 
             }
             else if(checkExist == 1)
             {
               $("#checkExist"+id).val(2);
-              $("#course"+id).removeClass("bx bx-user");
-              $("#course"+id).addClass("bx bx-heart");
+              $("#course"+id).removeClass("bx bx-heart-circle").css("color", "red");
+              $("#course"+id).addClass("bx bx-heart").css("color", "grey");
             }
             $("#course"+id).trigger("chosen:updated");
             }
