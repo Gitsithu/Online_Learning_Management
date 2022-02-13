@@ -7,9 +7,9 @@
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-4 d-flex align-items-center">
 
-          <a href="{{ route('export') }}" method="POST" enctype="multipart/form-data"  class="btn btn-danger">Excel</a>
+          <a href="{{ route('export') }}" method="POST" enctype="multipart/form-data"  class="btn btn-success">Excel</a>
           </div>
-          
+
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
             <a href='/admin/generate-pdf' class="btn btn-danger">PDF</a>
@@ -23,9 +23,9 @@
       <div class="row">
         <div class="col-12">
           <div class="card my-4">
-              
+
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                
+
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3">Student's Enrollment Report</h6>
                 <!-- <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('export') }}" method="POST" enctype="multipart/form-data"><i class="material-icons text-sm me-2">pdf</i>Excel</a> -->
@@ -83,11 +83,11 @@
                     @endforeach
                   </tbody>
                 </table>
-                
+
               </div>
             </div>
           </div>
         </div>
       </div>
-    
+
       @include('layouts.partial.footer')

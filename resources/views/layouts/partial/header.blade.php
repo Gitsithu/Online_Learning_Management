@@ -118,7 +118,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white {{ request()->route()->getName() === 'usr_report.index' || request()->route()->getName() === 'usr_report.create' || request()->route()->getName() === 'usr_report.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/user_report/user">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'user_report.index' || request()->route()->getName() === 'user_report.create' || request()->route()->getName() === 'user_report.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/user_report/user">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>

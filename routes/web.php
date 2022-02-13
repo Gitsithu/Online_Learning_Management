@@ -105,7 +105,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
     Route::resource('feed', FeedController::class);
 
     Route::resource('report', ReportController::class);
-    Route::get('/user_report/user', [ReportController::class, 'user'])->name('admin.user_report.user');
+    Route::get('/user_report/user', [ReportController::class, 'user'])->name('user_report.index');
 
     Route::resource('enrollment', EnrollController::class);
     Route::get('/enrollment/{id}/approve', [EnrollController::class, 'approve'])->name('admin.enrollment.approve');

@@ -6,7 +6,7 @@
         <tr>
             <th>User Name</th>
             <th style="width: 130px;">Email</th>
-            <th>Phone</th>
+            <th style="width: 85px;">Phone</th>
             <th style="width: 130px;">Address</th>
             <th >Image</th>
             <th style="width: 80px;">Status</th>
@@ -19,11 +19,11 @@
         <tr>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
-            <td>{{$user->phone}}</td>
-            <td style="width: 80px;">{{$user->address}}</td>
+            <td style="padding-left:20px;">{{$user->phone}}</td>
+            <td style="padding-left:50px;">{{$user->address}}</td>
             <td><img src="{{$paths}}{{$user->image}}" width="40" height="40"></td>
-                                    
-            <td style="width: 70px;">
+
+            <td style="padding-left:20px;">
             @if($user->status == 2)
             <p class="text-success">Approved</p>
             @elseif($user->status == 1)
@@ -32,11 +32,11 @@
             <p class="text-danger">Rejected</p>
             @endif
             </td>
-            <td style="width: 80px;">{{$user->created_at}}</td>
+            <td style="padding-left:30px;">{{$user->created_at}}</td>
         </tr>
-        
+
         @endforeach
-       
+
     </tbody>
 </table>
 </div>

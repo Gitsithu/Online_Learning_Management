@@ -8,7 +8,7 @@
                 <th style="width: 130px;">Course Name</th>
                 <th>Bank Name</th>
                 <th style="width: 130px;">Amount</th>
-                <th >Image</th>
+                <th>Image</th>
                 <th style="width: 80px;">Status</th>
                 <th>Created At</th>
             </tr>
@@ -18,12 +18,12 @@
             <?php $path = public_path(); ?>
             <tr>
                 <td>{{$enroll->name}}</td>
-                <td>{{$enroll->title}}</td>
-                <td>{{$enroll->bank_name}}</td>
-                <td>{{$enroll->amount}} -mmk</td>
+                <td style="padding-left:30px;">{{$enroll->title}}</td>
+                <td style="padding-left:20px;">{{$enroll->bank_name}}</td>
+                <td style="padding-left:30px;">{{$enroll->amount}} -mmk</td>
                 <td><img src="{{$path}}{{$enroll->image}}" width="40" height="40"></td>
-                                        
-                <td style="width: 70px;">
+
+                <td style="padding-left:20px;">
                 @if($enroll->status == 2)
                 <p class="text-success">Approved</p>
                 @elseif($enroll->status == 1)
@@ -32,11 +32,11 @@
                 <p class="text-danger">Rejected</p>
                 @endif
                 </td>
-                <td>{{$enroll->created_at}}</td>
+                <td style="padding-left:30px;">{{$enroll->created_at}}</td>
             </tr>
-            
+
             @endforeach
-           
+
         </tbody>
     </table>
 </div>
