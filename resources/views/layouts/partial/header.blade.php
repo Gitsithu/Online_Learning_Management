@@ -96,13 +96,21 @@
             <span class="nav-link-text ms-1">Bank</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'feed.index' || request()->route()->getName() === 'feed.create' || request()->route()->getName() === 'feed.edit'  ? 'bg-gradient-primary' : '' }} " href="/admin/feed">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">feedback</i>
+            </div>
+            <span class="nav-link-text ms-1">Feedback</span>
+          </a>
+        </li>
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Report</h6>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white " href="#">
 
-          <a class="nav-link text-white {{ request()->route()->getName() === 'en_report.index' || request()->route()->getName() === 'en_report.create' || request()->route()->getName() === 'en_report.edit'  ? 'bg-gradient-primary' : '' }}" href="../pages/profile.html">
+          <a class="nav-link text-white {{ request()->route()->getName() === 'en_report.index' || request()->route()->getName() === 'en_report.create' || request()->route()->getName() === 'en_report.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/report">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">payments</i>
             </div>

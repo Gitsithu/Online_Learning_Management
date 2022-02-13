@@ -49,11 +49,11 @@
              </div>
 
 </section>
-
-<!-- End Navbar -->
-<div class="container-fluid py-2" style="overflow-x: hidden;">
+    <!-- End Navbar -->
+    <div class="container-fluid py-2" style="overflow-x: hidden;">
     <div class="row">
     <div class="col-10 offset-10">
+    <!-- <a href="/admin/category/create"><button type="submit"  class="btn btn-fill btn-primary"> <i class="tim-icons icon-send"></i>Create</button></a> -->
 
     </div>
     </div>
@@ -63,7 +63,7 @@
               <div class="container">
 
              <div class="row">
-        @foreach ($enrolls as $enroll)
+        @foreach ($feedback as $feed)
 
         <div class="col-md-6 mt-4">
           <div class="card">
@@ -71,31 +71,20 @@
               <ul class="list-group">
                 <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                   <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm">{{ \Carbon\Carbon::parse($enroll->created_at)->diffForHumans() }}</h6>
-                    <span class="mb-2 text-xs">User Name: <span class="text-dark font-weight-bold ms-sm-2">{{$enroll -> name}}</span></span>
-                    <span class="mb-2 text-xs">Course Title: <span class="text-dark font-weight-bold ms-sm-2">{{$enroll -> title}}</span></span>
-                    <span class="mb-2 text-xs">Bank Name: <span class="text-dark font-weight-bold ms-sm-2">{{$enroll -> bank_name}}</span></span>
-                    <span class="mb-2 text-xs">Course Fee: <span class="text-dark font-weight-bold ms-sm-2">{{$enroll -> amount}}</span></span>
-                    <span class="mb-2 text-xs">Enrollment Status: <span class="text-dark ms-sm-2 font-weight-bold">
-                        
-                      @if($enroll->status == 1)
-                                              <span class="text-info ms-sm-2 font-weight-bold">  Pending </span>
-                                                @elseif($enroll->status == 3)
-                                               <span class="text-success ms-sm-2 font-weight-bold"> Approve</span>
-                                               @else
-                                               <span class="text-danger ms-sm-2 font-weight-bold"> Reject</span>
+                    <h6 class="mb-3 text-sm">{{ \Carbon\Carbon::parse($feed->created_at)->diffForHumans() }}</h6>
+                    <span class="mb-2 text-xs">Student Name: <span class="text-dark font-weight-bold ms-sm-2">{{$feed -> name}}</span></span>
+                    <span class="mb-2 text-xs">Course Name: <span class="text-dark font-weight-bold ms-sm-2">{{$feed -> title}}</span></span>
+                    <span class="mb-2 text-xs">Student's Feedback: <span class="text-dark font-weight-bold ms-sm-2">{{$feed -> message}}</span></span>
+                    <span class="mb-2 text-xs">Feedback Status: <span class="text-dark ms-sm-2 font-weight-bold">
+                      @if($feed->status == 1)
+                                              <span class="text-success ms-sm-2 font-weight-bold">  Active </span>
+                                                @else
+                                               <span class="text-danger ms-sm-2 font-weight-bold"> In-Active
                                                 @endif
                                               
                     </span></span>
                   </div>
-                  @if($enroll->status==1)
                   <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="return myFunction1();" href='/admin/enrollment/{{ $enroll->id }}/reject'><i class="material-icons text-sm me-2">cancel</i>Reject</a>
-
-                    <a class="btn btn-link text-dark px-3 mb-0" onclick="return myFunction();" href='/admin/enrollment/{{ $enroll->id }}/approve'><i class="material-icons text-sm me-2">check</i>Approve</a>
-                  </div>
-                  @else
-                  @endif
                 </li>
                 
                 </div>
@@ -108,7 +97,7 @@
             @endforeach
             
         </div>
-              {{ $enrolls->links() }}
+              {{ $feedback->links() }}
 
         </div>
       </div>

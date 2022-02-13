@@ -8,6 +8,9 @@ use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\EnrollController;
 use App\Http\Controllers\Backend\PaymentController;
+use App\Http\Controllers\Backend\FeedController;
+use App\Http\Controllers\Backend\ReportController;
+
 
 use App\Http\Controllers\Frontend\FavouriteController;
 use App\Http\Controllers\Frontend\CoursesController;
@@ -96,6 +99,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
     Route::resource('course', CourseController::class);
     Route::resource('user', UserController::class);
     Route::resource('payment', PaymentController::class);
+    Route::resource('feed', FeedController::class);
+    Route::resource('report', ReportController::class);
     Route::resource('enrollment', EnrollController::class);
     Route::get('/enrollment/{id}/approve', [EnrollController::class, 'approve'])->name('admin.enrollment.approve');
     Route::get('/enrollment/{id}/reject', [EnrollController::class, 'reject'])->name('admin.enrollment.reject');
