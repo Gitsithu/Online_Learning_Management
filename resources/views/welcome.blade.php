@@ -96,7 +96,7 @@
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-    @foreach($courses as $course)
+    @foreach($courses as $i=>$course)
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
               <img src="{{ $course->Image}}" class="img-fluid" alt="...">
@@ -123,7 +123,13 @@
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bx bx-user"></i>&nbsp;50
                     &nbsp;&nbsp;
-                    <i class="bx bx-heart"></i>&nbsp;65
+                    @if(Auth::check())
+                        <input type="hidden" id="checkExist{{$course->id}}" value="{{ $favouriteOrNot[$i ?? ''] > 0 ? 1 : 2 }}">
+                        <i class="{{ $favouriteOrNot[$i ?? ''] > 0 ? 'bx bx-heart' : 'bx bx-heart' }} " id="course{{$course->id}}" onclick="togglefavourite({{$course->id}})">&nbsp;{{$count[$i]}}</i>
+                        
+                    @else
+                      <i class="bx bx-heart" id="course{{$course->id}}" >&nbsp;{{$count[$i]}}</i>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -287,5 +293,44 @@
 
   </main><!-- End #main -->
 
+
+<script>
+  function togglefavourite(id)
+  {
+    var checkExist = $("#checkExist"+id).val();
+    
+        $.ajax({
+            type: 'POST',
+            url: '/frontend/favourite/add',
+            data: {
+                _token: "{{csrf_token()}}",
+                course_id: id
+            },
+            dataType: 'json',
+            success: function(data) {
+
+              let temp_data = data.returned_obj;
+              console.log(temp_data);
+              console.log(temp_data.objs);
+            $("#course"+id).html("&nbsp;"+temp_data.objs);
+            if(checkExist == 2)
+            {
+              $("#checkExist"+id).val(1);
+              $("#course"+id).removeClass("bx bx-heart").css("color", "grey");
+              $("#course"+id).addClass("bx bx-heart-circle").css("color", "red");
+
+            }
+            else if(checkExist == 1)
+            {
+              $("#checkExist"+id).val(2);
+              $("#course"+id).removeClass("bx bx-heart-circle").css("color", "red");
+              $("#course"+id).addClass("bx bx-heart").css("color", "grey");
+            }
+            $("#course"+id).trigger("chosen:updated");
+            }
+        });
+
+
+  }
 
 @include('layouts.footer')

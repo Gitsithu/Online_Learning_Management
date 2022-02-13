@@ -25,8 +25,21 @@ class SearchController extends Controller
          $count[] = DB::table('favourites')->where('Course_ID',$course_id)->count();
          
          }
+         $favouriteOrNot = array();
+         if(Auth::check())
+         {
+             $loginUserId = Auth::user()->id;    
+             foreach($courses as $i=>$course)
+             {
+                 $course_id = $course->id;
+         
+                 $favouriteOrNot[] = DB::table('favourites')->where('User_ID',$loginUserId)->where('Course_ID',$course_id)->count();
+         
+             }
+         }
          return view('frontend.course.index')
-         ->with('count',$count)   
+         ->with('count',$count)  
+         ->with('favouriteOrNot',$favouriteOrNot) 
                 ->with('categories',$categories)
                 ->with('courses',$courses);
     }

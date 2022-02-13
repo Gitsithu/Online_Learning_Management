@@ -3924,6 +3924,7 @@
   }
   .bx-heart-circle:before {
     content: "\ed6e";
+ 
   }
   .bx-heart-square:before {
     content: "\ed6f";
@@ -5095,4 +5096,6 @@
   .bx-zoom-out:before {
     content: "\eef4";
   }
+
+   
   
