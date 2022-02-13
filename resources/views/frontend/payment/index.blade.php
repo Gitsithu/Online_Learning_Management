@@ -256,7 +256,7 @@ h5,
                         <input type="text"  name="amount" placeholder="Enter payable amount" required class="form-control">
                     </div>
                     <div class="d-flex justify-content-between mb-2">
-                        <p class="textmuted">Screenshot</p>
+                        <p class="textmuted">Paid Screenshot</p>
                         <input type="file" class="form-control" name="image" required>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
@@ -278,7 +278,7 @@ h5,
                             <div class="d-flex mb-4"> <span class="">
                                     <p class="text-muted">Bank Name</p> 
                                     
-                                    <select onchange="slip()" id="payment_id"  name="payment_id"  class="form-control">
+                                    <select onchange="slip()" id="payment_id"  name="payment_id"  class="form-control" required>
                                     <option value="">Please Select A Bank</option>
                                     @foreach($payments as $pay)
                                         <option value="{{$pay->id}}">{{$pay->name}}</option>

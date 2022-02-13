@@ -1,4 +1,13 @@
 @include('layouts.header')
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2>Profile Edit</h2>
+        
+      </div>
+    </div><!-- End Breadcrumbs -->
 
 <section class="content">
         <div class="container-fluid">
@@ -49,16 +58,7 @@
              </div>
 
 </section>
-  <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs" data-aos="fade-in">
-      <div class="container">
-        <h2>Profile Edit</h2>
-        
-      </div>
-    </div><!-- End Breadcrumbs -->
-
+  
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
 

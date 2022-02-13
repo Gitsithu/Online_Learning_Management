@@ -45,6 +45,8 @@ class EnrollsController extends Controller
     {
         $this->validate($request, [
             'image' => 'required',
+            'payment_id' => 'required',
+
    
         ]);
 
@@ -115,12 +117,28 @@ class EnrollsController extends Controller
     }
 
     if($amount>$fee||$amount<$fee){
-        $this->validate($request, [
-            'amount' => "min:'$fee'|max:'$fee'",
+
+        $rules = [
+            'amount' => "required",
+            'amount' => "min:'$fee'",
+            'amount' =>  "max:'$fee'",
+        ];
+    
+        $customMessages = [
+            'required' => 'The payable ammount is required.',
+            'min' => "The payable amount must at least '$fee' mmk.",
+            'max' => "The payable amount must at max '$fee' mmk.",
+
+        ];
+        $this->validate($request, $rules, $customMessages);
+
+    //     $this->validate($request, [
+    //         'amount' => "min:'$fee'|max:'$fee'",
             
    
-        ]);
-    }
+    //     ]);
+     }
+    
 
         else{
             $courses = DB::table('courses')->join('categories', 'courses.Categories_ID', '=', 'categories.id')->select('categories.name', 'courses.id', 'courses.Categories_ID',

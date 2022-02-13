@@ -5,7 +5,7 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
-        <h2>Courses</h2>
+        <h2>Favourite</h2>
       </div>
     </div><!-- End Breadcrumbs -->
 

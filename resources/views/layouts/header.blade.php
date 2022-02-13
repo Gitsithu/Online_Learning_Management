@@ -48,13 +48,13 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="active" href="/">Home</a></li>
-          <li><a href="/frontend/course">Courses</a></li>
-          <li><a href="/frontend/blog">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
+          <li><a class="{{ request()->route()->getName() === 'welcome' ? 'active' : '' }}" href="/">Home</a></li>
+          <li><a class="{{ request()->route()->getName() === 'course.index'|| request()->route()->getName() === 'search.index' }}" href="/frontend/course">Courses</a></li>
+          <li><a class="{{ request()->route()->getName() === 'blog.index' ? 'active' : '' }}" href="/frontend/blog">Blog</a></li>
+          <li class="dropdown"><a href="#" class="{{ request()->route()->getName() === 'frontend.course.show' ? 'active' : '' }}"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               @foreach($categories as $category)
-              <li><a href="/frontend/course/{{$category->id}}/show">{{$category->name}}</a></li>
+              <li><a class="{{ request()->route()->getName() === 'frontend.course.show' ? 'active' : '' }}" href="/frontend/course/{{$category->id}}/show">{{$category->name}}</a></li>
               @endforeach
             </ul>
           </li>
@@ -65,9 +65,9 @@
       @if(Auth::check())
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-      <li><a href="/frontend/preview">Enroll</a></li>
-      <li><a href="/frontend/favourite/view">Favourite</a></li>
-      <li><a href="/frontend/feedback">Feedback</a></li>
+      <li><a class="{{ request()->route()->getName() === 'preview.index' ? 'active' : '' }}" href="/frontend/preview">Enroll</a></li>
+      <li><a class="{{ request()->route()->getName() === 'frontend.favourite.view' ? 'active' : '' }}" href="/frontend/favourite/view">Favourite</a></li>
+      <li><a class="{{ request()->route()->getName() === 'feedback.index' ? 'active' : '' }}"href="/frontend/feedback">Feedback</a></li>
         </ul>
       </nav>
       @else
@@ -82,9 +82,9 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
       <li class="dropdown">
-      <a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+      <a href="#" class="{{ request()->route()->getName() === 'users.index'||request()->route()->getName() === 'users.edit' ? 'active' : '' }}"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                  <li><a href="/frontend/users">{{ Auth::user()->name }}</a></li>
+                  <li><a href="/frontend/users" class="{{ request()->route()->getName() === 'users.index'||request()->route()->getName() === 'users.edit' ? 'active' : '' }}">{{ Auth::user()->name }}</a></li>
                   <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">logout</a></li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
