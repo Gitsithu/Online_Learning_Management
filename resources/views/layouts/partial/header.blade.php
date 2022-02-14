@@ -108,15 +108,45 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Report</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
 
           <a class="nav-link text-white {{ request()->route()->getName() === 'report.index' || request()->route()->getName() === 'report.create' || request()->route()->getName() === 'report.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/report">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">payments</i>
+              <i class="material-icons opacity-10">print</i>
             </div>
             <span class="nav-link-text ms-1">Enrollment Report</span>
           </a>
         </li>
+
+        <li class="nav-item"> 
+
+          <a class="nav-link text-white {{ request()->route()->getName() === 'user_report.approve' || request()->route()->getName() === 'report.create' || request()->route()->getName() === 'report.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/user_report/approve">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">check</i>
+            </div>
+            <span class="nav-link-text ms-1">Enrollment Approve Report</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+
+          <a class="nav-link text-white {{ request()->route()->getName() === 'user_report.reject' || request()->route()->getName() === 'report.create' || request()->route()->getName() === 'report.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/user_report/reject">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">cancel</i>
+            </div>
+            <span class="nav-link-text ms-1">Enrollment Reject Report</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+
+          <a class="nav-link text-white {{ request()->route()->getName() === 'user_report.pending' || request()->route()->getName() === 'report.create' || request()->route()->getName() === 'report.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/user_report/pending">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">alarm</i>
+            </div>
+            <span class="nav-link-text ms-1">Enrollment Pending Report</span>
+          </a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link text-white {{ request()->route()->getName() === 'user_report.index' || request()->route()->getName() === 'user_report.create' || request()->route()->getName() === 'user_report.edit'  ? 'bg-gradient-primary' : '' }}" href="/admin/user_report/user">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

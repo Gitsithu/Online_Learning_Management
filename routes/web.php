@@ -106,6 +106,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
 
     Route::resource('report', ReportController::class);
     Route::get('/user_report/user', [ReportController::class, 'user'])->name('user_report.index');
+    Route::get('/user_report/approve', [ReportController::class, 'approve'])->name('user_report.approve');
+    Route::get('/user_report/reject', [ReportController::class, 'reject'])->name('user_report.reject');
+    Route::get('/user_report/pending', [ReportController::class, 'pending'])->name('user_report.pending');
 
     Route::resource('enrollment', EnrollController::class);
     Route::get('/enrollment/{id}/approve', [EnrollController::class, 'approve'])->name('admin.enrollment.approve');
@@ -129,10 +132,15 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'],'name'=> 'admin'], fu
 
     Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
     Route::get('generate-userpdf', [PDFController::class, 'generateUSERPDF']);
+    Route::get('generate-apppdf', [PDFController::class, 'generateAPPPDF']);
+    Route::get('generate-repdf', [PDFController::class, 'generateREPDF']);
+    Route::get('generate-pendpdf', [PDFController::class, 'generatePENDPDF']);
     // Route::get('generate-excel', [PDFController::class, 'generateEXCEL']);
 
     Route::get('importExportView', [MyController::class, 'importExportView']);
     Route::get('export', [MyController::class, 'export'])->name('export');
+    Route::get('exportapp', [MyController::class, 'exportapp'])->name('exportapp');
+    Route::get('exportre', [MyController::class, 'exportre'])->name('exportre');
     Route::post('import', [MyController::class, 'import'])->name('import');
 
     Route::get('importExportView', [MyUserController::class, 'importExportView']);

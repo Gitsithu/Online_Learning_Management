@@ -3,13 +3,12 @@
 namespace App\Exports;
 use DB;
 use App\Models\Enroll;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\Enrollsapp;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
-class EnrollsExport implements FromCollection,WithHeadings,WithColumnWidths
+class EnrollsappExport implements FromCollection,WithHeadings,WithColumnWidths
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -27,7 +26,8 @@ class EnrollsExport implements FromCollection,WithHeadings,WithColumnWidths
                         WHEN enrolls.status = "2" THEN "Approved" 
                         ELSE "Rejected" 
                         END) AS status'),'enrolls.created_at')
-                ->get();
+                        ->where('enrolls.status',2)
+                        ->get();
             return $enrolls;
         
         // $enrolls= DB::table('enrolls')

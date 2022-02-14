@@ -3,15 +3,14 @@
 namespace App\Exports;
 use DB;
 use App\Models\Enroll;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use App\Models\Enrollsre;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
-class EnrollsExport implements FromCollection,WithHeadings,WithColumnWidths
+class EnrollsreExport implements FromCollection,WithHeadings,WithColumnWidths
 {
-    /**
+   /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
@@ -27,6 +26,7 @@ class EnrollsExport implements FromCollection,WithHeadings,WithColumnWidths
                         WHEN enrolls.status = "2" THEN "Approved" 
                         ELSE "Rejected" 
                         END) AS status'),'enrolls.created_at')
+                        ->where('enrolls.status',3)
                 ->get();
             return $enrolls;
         

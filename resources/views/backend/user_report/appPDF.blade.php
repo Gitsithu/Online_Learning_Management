@@ -5,37 +5,34 @@
     <thead>
         <tr>
             <th>User Name</th>
-            <th style="width: 130px;">Email</th>
-            <th style="width: 85px;">Phone</th>
-            <th style="width: 130px;">Address</th>
-            <th >Image</th>
+            <th style="width: 130px;">Course Name</th>
+            <th>Bank Name</th>
+            <th style="width: 130px;">Amount</th>
+            <th>Image</th>
             <th style="width: 80px;">Status</th>
             <th>Created At</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($users as $user)
-        <?php $paths = public_path(); ?>
+        @foreach($enrolls as $enroll)
+        <?php $path = public_path(); ?>
         <tr>
-            <td>{{$user->name}}</td>
-            <td>{{$user->email}}</td>
-            <td style="padding-left:20px;">{{$user->phone}}</td>
-            <td style="padding-left:50px;">{{$user->address}}</td>
-            @if($user->image!=null)
-            <td><img src="{{$paths}}{{$user->image}}" width="40" height="40"></td>
-            @else
-            <td><img src="{{$user->image}}" width="40" height="40"></td>
-            @endif
+            <td>{{$enroll->name}}</td>
+            <td style="padding-left:30px;">{{$enroll->title}}</td>
+            <td style="padding-left:20px;">{{$enroll->bank_name}}</td>
+            <td style="padding-left:30px;">{{$enroll->amount}} -mmk</td>
+            <td><img src="{{$path}}{{$enroll->image}}" width="40" height="40"></td>
+
             <td style="padding-left:20px;">
-            @if($user->status == 2)
+            @if($enroll->status == 2)
             <p class="text-success">Approved</p>
-            @elseif($user->status == 1)
+            @elseif($enroll->status == 1)
             <p class="text-secondary">Pending</p>
             @else
             <p class="text-danger">Rejected</p>
             @endif
             </td>
-            <td style="padding-left:30px;">{{$user->created_at}}</td>
+            <td style="padding-left:30px;">{{$enroll->created_at}}</td>
         </tr>
 
         @endforeach
