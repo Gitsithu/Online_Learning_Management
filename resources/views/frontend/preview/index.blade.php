@@ -38,11 +38,11 @@
                     <!-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt=""> -->
                     <span>{{ $enroll->author}}</span>
                   </div>
-                  <div class="trainer-rank d-flex align-items-center">
+                  <!-- <div class="trainer-rank d-flex align-items-center">
                     <i class="bx bx-user"></i>&nbsp;50
                     &nbsp;&nbsp;
                     <i class="bx bx-heart"></i>&nbsp;65
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
