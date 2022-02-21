@@ -17,5 +17,4 @@ yarn-error.log
 /public/image
 /public/course
 /public/enroll
-
-
+.DS_Store
