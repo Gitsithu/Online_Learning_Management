@@ -88,6 +88,7 @@
                                               
                     </span></span>
                     <span class="mb-2 text-xs">Enrollment Slip: <span class="text-dark font-weight-bold ms-sm-2"><a href="{{$enroll -> image}}">Click to Download</a></span></span>
+                    <!-- a thit -->
                   </div>
                   @if($enroll->status==1)
                   <div class="ms-auto text-end">
