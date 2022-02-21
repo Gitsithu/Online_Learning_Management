@@ -58,7 +58,6 @@ class UsersController extends Controller
         $this->validate($request, [
             'name' => 'required',
                 'password' => 'required|min:8|confirmed',
-                'phone' => 'required|min:8|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
             
         ]);
             

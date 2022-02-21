@@ -18,7 +18,7 @@ class EnrollController extends Controller
         ->join('users', 'users.id', '=', 'enrolls.User_ID')
         ->join('payments', 'payments.id', '=', 'enrolls.Payment_ID')
         ->select('enrolls.id',
-        'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'courses.Image', 'courses.description', 'courses.remark', 'enrolls.status',
+        'courses.title', 'courses.author', 'courses.fee', 'courses.duration', 'courses.published_date', 'courses.video', 'enrolls.image', 'courses.description', 'courses.remark', 'enrolls.status',
          'courses.created_at','courses.updated_at', 'enrolls.amount', 'users.name','payments.name as bank_name')
         ->latest()->paginate(6);
         $data = Enroll::latest()->paginate(6);

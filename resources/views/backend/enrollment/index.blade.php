@@ -80,13 +80,14 @@
                         
                       @if($enroll->status == 1)
                                               <span class="text-info ms-sm-2 font-weight-bold">  Pending </span>
-                                                @elseif($enroll->status == 3)
+                                                @elseif($enroll->status == 2)
                                                <span class="text-success ms-sm-2 font-weight-bold"> Approve</span>
                                                @else
                                                <span class="text-danger ms-sm-2 font-weight-bold"> Reject</span>
                                                 @endif
                                               
                     </span></span>
+                    <span class="mb-2 text-xs">Enrollment Slip: <span class="text-dark font-weight-bold ms-sm-2"><a href="{{$enroll -> image}}">Click to Download</a></span></span>
                   </div>
                   @if($enroll->status==1)
                   <div class="ms-auto text-end">

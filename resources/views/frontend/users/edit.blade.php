@@ -152,7 +152,7 @@
                 <textarea class="form-control" name="address" rows="5" placeholder="Address" required>{{ isset($user)? $user->address:Request::old('address') }}</textarea>
               </div>
               <br>
-              <div class="text-center"><button type="submit" style="background-color:lightgreen;"  onclick="myFunction1()" >Update</button></div>
+              <div class="text-center"><button class="btn btn-success" type="submit"  onclick="myFunction1()" >Update</button></div>
             </form>
 
           </div>
