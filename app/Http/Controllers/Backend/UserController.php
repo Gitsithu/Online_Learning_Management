@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 use DB;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -17,8 +18,9 @@ class UserController extends Controller
 
     public function index()
     {
-
-        $users=DB::select('SELECT * from users where role_id=1')->get();
+        $loginUser = Auth::user();
+        $loginUserId = $loginUser->id;
+        $users=DB::select('SELECT * from users where role_id=1 and id='.$loginUserId);
         $data = User::latest()->paginate(6);
         
         return view('backend.user.index')
