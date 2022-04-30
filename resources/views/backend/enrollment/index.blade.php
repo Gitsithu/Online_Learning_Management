@@ -130,6 +130,8 @@
                     @endforeach
                   </tbody>
                 </table>
+                <div style="margin-left:40% !important;">{{ $enrolls->links() }}</div>
+
 
               </div>
             </div>
