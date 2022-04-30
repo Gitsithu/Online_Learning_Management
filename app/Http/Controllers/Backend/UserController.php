@@ -18,6 +18,7 @@ class UserController extends Controller
 
     public function index()
     {
+        // edit
         $loginUser = Auth::user();
         $loginUserId = $loginUser->id;
         $users=DB::select('SELECT * from users where role_id=1 and id='.$loginUserId);
