@@ -13,3 +13,8 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/public/video
+/public/image
+/public/course
+/public/enroll
+.DS_Store
